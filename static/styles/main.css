@@ -9,7 +9,9 @@ body {
 body {
   background: url("http://static.hdw.eweb4.com/media/wallpapers_dl/1/67/667476-writer.jpg");
   background-size: cover;
-  z-index: 2;
+}
+h1 {
+  font-size: 4.5rem !important;
 }
 
 /*HOME*/
@@ -28,9 +30,9 @@ body {
 }
 
 .card {
-  background-color: rgba(255,255,255, 0.8) !important;
+  background-color: rgba(255, 255, 255, 0.8) !important;
 }
-.btn{
+.btn {
   border-radius: 20px;
   width: 70px;
 }
@@ -80,3 +82,15 @@ footer a:hover {
     font-size: 4rem;
   }
 }
+/*IPHONE 5/SE*/
+@media screen and (device-aspect-ratio: 40/71) {
+  .img-fluid{
+    height: 80px;
+    width: 80px;
+  }
+  .display-1 {
+    font-size: 2rem !important;
+  }
+
+}
+
