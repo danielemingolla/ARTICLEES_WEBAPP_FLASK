@@ -1,3 +1,82 @@
-.container {
-  padding-top: 20px;
+/*  <-- WALLPAPER*/
+html,
+body {
+  min-height: 100vh;
+  min-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+body {
+  background: url("http://static.hdw.eweb4.com/media/wallpapers_dl/1/67/667476-writer.jpg");
+  background-size: cover;
+  z-index: 2;
+}
+
+/*HOME*/
+.d-flex img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.d-flex h1 {
+  margin-bottom: 0;
+}
+
+.d-flex p:nth-child(2) {
+  font-size: 1em;
+}
+
+.card {
+  background-color: rgba(255,255,255, 0.8) !important;
+}
+.btn{
+  border-radius: 20px;
+  width: 70px;
+}
+
+/*NAVBAR*/
+.navbar {
+  font-size: 20px !important;
+}
+
+.navbar a:hover {
+  color: rgba(0, 0, 0, 0.4) !important;
+}
+
+.navbar-toggler {
+  border: none;
+  outline: none;
+}
+.navbar-toggler:focus {
+  outline: 0;
+  box-shadow: none !important;
+}
+
+/*FOOTER*/
+footer {
+  position: absolute;
+  bottom: 0;
+  min-width: 100%;
+}
+
+footer a {
+  color: black;
+  text-decoration: none;
+}
+footer a:hover {
+  color: rgba(0, 0, 0, 0.7) !important;
+}
+
+/*MEDIA QUERIES*/
+@media only screen and (max-width: 768px) {
+  .display-1 {
+    font-size: 5rem;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .display-1 {
+    font-size: 4rem;
+  }
 }

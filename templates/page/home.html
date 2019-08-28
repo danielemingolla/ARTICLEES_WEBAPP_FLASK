@@ -1,11 +1,169 @@
-{% extends 'layouts/base_layout.html' %} 
-{% block body %} 
-<div class="jumbotron text-center">
-    <h1>Welcome To My First WebApp</h1>
-    <p class="lead">This application is built on the Python Flask framework by Daniele Mingolla</p>
-    {%if session.logged_in == NULL%}
-        <a href="/register" class="btn btn-primary btn-lg"> Register</a>
-        <a href="/login" class="btn btn-success btn-lg"> Login</a>
-    {%endif%}
+{% extends 'layouts/base_layout.html' %} {% block body %}
+<div class="d-flex flex-column justify-content-center align-items-center">
+  <img
+    class="img-fluid justify-content-center hidden-lg-down "
+    src="http://pluspng.com/img-png/feather-pen-png-black-and-white-size-512.png"
+    height="150"
+    width="150"
+    alt="LOGO"
+  />
+  <h1 class="display-1 text-center">WELCOME TO ARTICLEES</h1>
+  <blockquote class="blockquote text-center mb-0">
+    <p class="mb-0">
+      &#34;I do not agree with what you have to say, but I’ll defend to the
+      death your right to say it.&#34;
+    </p>
+    <p class="blockquote-footer text-center mb-0">
+      <cite title="Source Title">Voltaire</cite>
+    </p>
+  </blockquote>
 </div>
+<div class="container my-4">
+  <hr class="mb-4 mt-1" />
+
+  <!--Carousel Wrapper-->
+  <div
+    id="multi-item-example"
+    class="carousel slide carousel-multi-item"
+    data-ride="carousel"
+  >
+    <!--Indicators-->
+    <ol class="carousel-indicators">
+      <li
+        data-target="#multi-item-example"
+        data-slide-to="0"
+        class="active"
+      ></li>
+      <li data-target="#multi-item-example" data-slide-to="1"></li>
+      <li data-target="#multi-item-example" data-slide-to="2"></li>
+    </ol>
+    <!--/.Indicators-->
+
+    <!--Slides-->
+    <div class="carousel-inner" role="listbox">
+      <!--First slide-->
+      <div class="carousel-item active">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card mb-2">
+              <div class="card-body d-flex flex-column" style="height: 28em;">
+                <h4 class="card-title">Article 1</h4>
+                <p class="card-text">Etiam ut libero dapibus, viverra lacus eget, feugiat est. In ultrices libero ac ex tempus fringilla. Nunc ac ipsum tristique, ornare metus sed, imperdiet lectus. Etiam hendrerit ligula quis ligula sodales mollis. Aliquam porta, velit et rhoncus dictum, leo metus porta ex, ut aliquam lacus turpissit amet dui. Nullam eget finibus diam. Cras scelerisque arcuet gravida feugiat. Quisque efficitur augue et ligula laoreet condimentum. Maecenas non iaculis arcu, at tempor quam. Donec id viverra leo. Aenean varius posuere ultrices. Quisque</p>
+                <a class="btn btn-dark text-white mt-auto">READ</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 clearfix d-none d-md-block">
+            <div class="card mb-2">
+              <div class="card-body d-flex flex-column" style="height: 28em;">
+                <h4 class="card-title">Article 2</h4>
+                <p class="card-text">Phasellus placerat efficitur rutrum. Curabitur sodales urna sit amet enim congue, id pharetra nunc tincidunt. Morbi convallis ultrices rhoncus. Nam fringilla nec elit nec accumsan. Pellentesque pellentesque tellus in interdum consectetur. Fusce sit amet risus vestibulum, egestas mauris id, consectetur odio. Nulla facilisi. In sit amet neque nec mauris mollis eleifend. Nulla molestie, mi sit amet ullam egestas mauris id, consectetur odio. consectetur odio. Nulla facilisi. In sit amet neque nec mauris mollis.</p>
+                <a class="btn btn-dark text-white mt-auto">READ</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 clearfix d-none d-md-block">
+            <div class="card mb-2">
+              <div class="card-body d-flex flex-column" style="height: 28em;">
+                <h4 class="card-title">Article 3</h4>
+                <p class="card-text">Sed accumsan ut est in pretium. Etiam eu purus quam. Morbi nec volutpat nibh. Donec lacinia dolor turpis. Nullam molestie porttitor velit ut pretium. Pellentesque auctor sapien vitae ligula rutrum consectetur. Duis vestibulum ut erat et viverra. Nulla lectus ipsum, auctor ornare nisl at, efficitur finibus arcu. Aliquam aliquet tellus ut quam condimentum, ut convallis nisl molestie. Vestibulum vitae lorem sagittis, cursus risus a, pellentesque erat. Donec sodales ligula convallis, aliquam neque vel, dictum elit.</p>
+                <a class="btn btn-dark text-white mt-auto">READ</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/.First slide-->
+
+      <!--Second slide-->
+      <div class="carousel-item">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card mb-2">
+              <div class="card-body" style="height: 28em;">
+                <h4 class="card-title d-flex flex-column">Article 4</h4>
+                <p class="card-text">Sed accumsan ut est in pretium. Etiam eu purus quam. Morbi nec volutpat nibh. Donec lacinia dolor turpis. Nullam molestie porttitor velit ut pretium. Pellentesque auctor sapien vitae ligula rutrum consectetur. Duis vestibulum ut erat et viverra. Nulla lectus ipsum, auctor ornare nisl at, efficitur finibus arcu. Aliquam aliquet tellus ut quam condimentum, ut convallis nisl molestie. Vestibulum vitae lorem sagittis, cursus risus a, pellentesque erat. Donec sodales ligula convallis, aliquam neque vel, dictum elit.
+                </p>
+                <a class="btn btn-dark text-white mt-auto">READ</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 clearfix d-none d-md-block">
+            <div class="card mb-2">   
+              <div class="card-body" style="height: 28em;">
+                    <h4 class="card-title d-flex flex-column">Article 5</h4>
+                    <p class="card-text">Sed accumsan ut est in pretium. Etiam eu purus quam. Morbi nec volutpat nibh. Donec lacinia dolor turpis. Nullam molestie porttitor velit ut pretium. Pellentesque auctor sapien vitae ligula rutrum consectetur. Duis vestibulum ut erat et viverra. Nulla lectus ipsum, auctor ornare nisl at, efficitur finibus arcu. Aliquam aliquet tellus ut quam condimentum, ut convallis nisl molestie. Vestibulum vitae lorem sagittis, cursus risus a, pellentesque erat. Donec sodales ligula convallis, aliquam neque vel, dictum elit.
+                    </p>
+                    <a class="btn btn-dark text-white mt-auto">READ</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 clearfix d-none d-md-block">
+            <div class="card mb-2">
+              <div class="card-body" style="height: 28em;">
+                    <h4 class="card-title d-flex flex-column">Article 6</h4>
+                    <p class="card-text">Sed accumsan ut est in pretium. Etiam eu purus quam. Morbi nec volutpat nibh. Donec lacinia dolor turpis. Nullam molestie porttitor velit ut pretium. Pellentesque auctor sapien vitae ligula rutrum consectetur. Duis vestibulum ut erat et viverra. Nulla lectus ipsum, auctor ornare nisl at, efficitur finibus arcu. Aliquam aliquet tellus ut quam condimentum, ut convallis nisl molestie. Vestibulum vitae lorem sagittis, cursus risus a, pellentesque erat. Donec sodales ligula convallis, aliquam neque vel, dictum elit.
+                    </p>
+                    <a class="btn btn-dark text-white mt-auto">READ</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/.Second slide-->
+    </div>
+    <!--/.Slides-->
+    <!--Controls-->
+   <!--
+<div class="controls-top">
+      <a class="btn-floating" href="#multi-item-example" data-slide="prev"
+        ><i class="fa fa-chevron-left"></i
+      ></a>
+      <a class="btn-floating" href="#multi-item-example" data-slide="next"
+        ><i class="fa fa-chevron-right"></i
+      ></a>
+    </div>
+
+   --> 
+    <!--/.Controls-->
+  </div>
+  <!--/.Carousel Wrapper-->
+</div>
+<footer class="text-center d-none d-md-block">
+  <!-- Facebook -->
+  <a class="fb-ic">
+    <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+  </a>
+  <!-- Twitter -->
+  <a class="tw-ic">
+    <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+  </a>
+  <!-- Google +-->
+  <a class="gplus-ic">
+    <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+  </a>
+  <!--Linkedin -->
+  <a class="li-ic">
+    <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+  </a>
+  <!--Instagram-->
+  <a class="ins-ic">
+    <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+  </a>
+  <!--Pinterest-->
+  <a class="pin-ic">
+    <i class="fab fa-pinterest fa-lg white-text fa-2x"> </i>
+  </a>
+  <!-- Copyright -->
+  <div class="text-center pb-2 pt-3">
+    © 2019 Copyright:
+    <a href="https://danielemingolla.site/"> Daniele Mingolla</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+
 {%endblock%}
