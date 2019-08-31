@@ -56,7 +56,7 @@ def add_article():
         # Close connection
         cursor.close()
         flash('Article created!', 'success')
-        return redirect(url_for('mainroutes.dashboard'))
+        return redirect(url_for('users.account'))
     return render_template('page/add_article.html', form=form)
 
 
@@ -90,7 +90,7 @@ def edit_article(id):
         # Close connection
         cursor.close()
         flash('Article Update!', 'success')
-        return redirect(url_for('mainroutes.dashboard'))
+        return redirect(url_for('users.account'))
     return render_template('page/edit_article.html', form=form)
 
 # Delete article
@@ -107,4 +107,4 @@ def delete_article(id):
     # Close connection
     cursor.close()
     flash('Article Deleted!', 'success')
-    return redirect(url_for('mainroutes.dashboard'))
+    return redirect(url_for('users.account'))

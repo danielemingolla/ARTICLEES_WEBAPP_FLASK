@@ -1,6 +1,6 @@
 var MAXCHARACTERS = 600;
 
-$(".card-text").each(function(i) {
+$(".card-text").each(function (i) {
   oldText = $(this).text();
   windowSize = window.innerWidth;
   //IPHONE 5/SE
@@ -23,4 +23,11 @@ $(".card-text").each(function(i) {
     newText = oldText.substring(0, MAXCHARACTERS);
     $(this).text(newText + " [...]");
   }
+});
+
+//SIMULA IL CLICK SULL'INPUT CHOOSEN IN MODO DA PERSONALIZZARE LA LABEL COME SI VUOLE
+$(document).ready(function () {
+  $('.btn-info').on('click', function () {
+    $('.input-custom').trigger('click');
+  })
 });

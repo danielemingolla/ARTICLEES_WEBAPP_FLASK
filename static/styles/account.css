@@ -1,0 +1,41 @@
+/*NAVBAR*/
+
+.navbar {
+  font-size: 20px !important;
+}
+
+.navbar a:hover {
+  color: rgba(0, 0, 0, 0.4) !important;
+}
+
+.navbar-toggler {
+  border: none;
+  outline: none;
+}
+
+.navbar-toggler:focus {
+  outline: 0;
+  box-shadow: none !important;
+}
+
+.btn-primary input {
+  position: absolute;
+  font-size: 50px;
+  opacity: 0;
+  right: 0;
+  top: 0;
+}
+
+.input-custom {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.input-custom,label {
+  cursor: pointer;
+  /* "hand" cursor */
+}

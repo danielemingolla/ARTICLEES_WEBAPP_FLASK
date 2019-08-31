@@ -1,4 +1,16 @@
-{% extends 'layouts/base_layout.html' %} {% block body %}
+{% extends 'layouts/base_layout.html' %}
+
+{% block css %}
+<link
+rel="stylesheet"
+type="text/css"
+href="../../static/styles/home.css"
+/>
+
+
+{%endblock%}
+
+{% block body %}
 <div class="d-flex flex-column justify-content-center align-items-center">
   <img
     class="img-fluid justify-content-center hidden-lg-down "

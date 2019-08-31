@@ -1,0 +1,154 @@
+{% extends 'layouts/base_layout.html' %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="../../static/styles/account.css" />
+{%endblock%}
+<!--
+datiUtente[?] ==> 0=username, 1=email
+-->
+
+{%block body%}
+<div class="container">
+    <div class="row my-2">
+        <div class="col-lg-8 order-lg-2">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" data-target="#articles" data-toggle="tab" class="nav-link"> My Articles</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Edit</a>
+                </li>
+            </ul>
+            <div class="tab-content py-4">
+                <div class="tab-pane active" id="profile">
+                    <h5 class="mb-3">Welcome {{datiUtente[0]}}</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>About</h6>
+                            <p>
+                                Web Developer, Finance, Entrepreneurship
+                            </p>
+                            <h6>Hobbies</h6>
+                            <p>
+                                Donec quis ex erat. Donec at orci et ligula consectetur varius. Integer ac facilisis
+                                orci. Integer turpis ligula, posuere at scelerisque eu. Donec at orci et ligula
+                                consectetur varius. Integer ac facilisis
+                                orci. Integer turpis ligula, posuere at scelerisque eu.
+                            </p>
+                        </div>
+                    </div>
+                    <!--/row-->
+                </div>
+                <div class="tab-pane" id="articles">
+                    <table class="table table-hover table-striped">
+                        <tbody>
+                            </tr>
+                            <th>Title</th>
+                            <th>Date</th>
+                            <th></th>
+                            <th></th>
+                            </tr>
+                            {%for article in articles%}
+                            <tr>
+                                <td><a href="article/{{ article[0] }}">{{article[1]}}</a></td>
+                                <td>{{article[4]}}</td>
+                                <td><a href="edit_article/{{article[0]}}" class="btn btn-warning pull-right">Edit</a>
+                                </td>
+                                <td>
+                                    <form action="{{url_for('articlesblueprint.delete_article', id = article[0])}}"
+                                        method="post">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="submit" value="Delete" class="btn btn-danger">
+                                    </form>
+                                </td>
+                            </tr>
+                            {%endfor%}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane" id="edit">
+                    <form method="POST" action="">
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                            <div class="col-lg-9">
+                                {{form.email(class_="form-control")}}
+                                {{ form.hidden_tag() }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Username</label>
+                            <div class="col-lg-9">
+                                {{form.username(class_="form-control")}}
+                                {{ form.hidden_tag() }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-9">
+                                {{form.submit(class_="btn btn-primary")}}
+                                {{ form.hidden_tag() }}
+                                <!--Risolve il problema con il CSRF token-->
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 order-lg-1 text-center">
+            <img src="../../static/profilepics/default.png" class="mx-auto img-fluid rounded-circle d-block"
+                alt="avatar">
+            <h6 class="mt-2">Upload a different photo</h6>
+            {{form.picture(class_="input-custom my-2")}}
+            {{ form.hidden_tag() }}
+            <label class="btn btn-info my-2">Upload</label>
+            <!--Risolve il problema con il CSRF token-->
+            <a href="/add_article" class="btn btn-success">Add Article</a>
+        </div>
+
+        <hr>
+    </div>
+</div>
+
+
+<!--
+    <h1 class="display-3 text-center">
+      DASHBOARD
+      <p class="display-4">Welcome {{ datiUtente[2] }}</p> 
+    </h1>
+    <a href="/add_article" class="btn btn-success">Add Article</a> <hr>
+    <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Date</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {%for article in articles%}
+            <tr>
+                <td>{{article[0]}}</td>
+                <td>{{article[1]}}</td>
+                <td>{{article[2]}}</td>
+                <td>{{article[4]}}</td>
+                <td><a href="edit_article/{{article[0]}}" class="btn btn-warning pull-right">Edit</a></td>
+                <td>
+                    <form action="{{url_for('articlesblueprint.delete_article', id = article[0])}}" method="post">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="submit" value="Delete" class="btn btn-danger">
+                    </form>
+                </td>
+            </tr>
+        {%endfor%}
+    </table>
+
+-->
+
+
+
+
+
+
+{%endblock%}
