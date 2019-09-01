@@ -1,10 +1,12 @@
-{% extends 'layouts/base_layout.html' %} 
-{% block body %} 
+{% extends 'layouts/base_layout.html' %}
+{% block body %}
 <h1>Register</h1>
 {% from "includes/_formhelpers.html" import render_field%}
 <form method='POST' action="">
+    {{ form.hidden_tag() }}
     <div class="form-group">
         {{render_field(form.name, class_="form-control")}}
+
     </div>
     <div class="form-group">
         {{render_field(form.email, class_="form-control")}}
@@ -18,6 +20,9 @@
     <div class="form-group">
         {{render_field(form.confirm, class_="form-control")}}
     </div>
-    <p><input type="submit" class ="btn btn-primary" value="Submit"></p>
+    <p><input type="submit" class="btn btn-primary" value="Submit"></p>
+    {% for error in form.errors %}
+        {{ error }}
+    {% endfor %}
 </form>
 {%endblock%}

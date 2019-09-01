@@ -4,7 +4,7 @@
 <ul class="list-group">
   {% for article in articles%}
   <li class="list-group-item">
-    <a href="article/{{ article[0] }}">{{ article[1] }}</a>
+    <a href="article/{{ article.id}}">{{ article.title }}</a>
   </li>
   {%endfor%}
 </ul>

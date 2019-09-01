@@ -3,9 +3,6 @@
 {% block css %}
 <link rel="stylesheet" type="text/css" href="../../static/styles/account.css" />
 {%endblock%}
-<!--
-datiUtente[?] ==> 0=username, 1=email
--->
 
 {%block body%}
 <div class="container">
@@ -24,7 +21,7 @@ datiUtente[?] ==> 0=username, 1=email
             </ul>
             <div class="tab-content py-4">
                 <div class="tab-pane active" id="profile">
-                    <h5 class="mb-3">Welcome {{datiUtente[0]}}</h5>
+                    <h5 class="mb-3">Welcome {{user.username}}</h5>
                     <div class="row">
                         <div class="col-md-6">
                             <h6>About</h6>
@@ -53,12 +50,12 @@ datiUtente[?] ==> 0=username, 1=email
                             </tr>
                             {%for article in articles%}
                             <tr>
-                                <td><a href="article/{{ article[0] }}">{{article[1]}}</a></td>
-                                <td>{{article[4]}}</td>
-                                <td><a href="edit_article/{{article[0]}}" class="btn btn-warning pull-right">Edit</a>
+                                <td><a href="article/{{ article.id}}">{{article.title}}</a></td>
+                                <td>{{article.create_date}}</td>
+                                <td><a href="edit_article/{{article.id}}" class="btn btn-warning pull-right">Edit</a>
                                 </td>
                                 <td>
-                                    <form action="{{url_for('articlesblueprint.delete_article', id = article[0])}}"
+                                    <form action="{{url_for('articlesblueprint.delete_article', id = article.id)}}"
                                         method="post">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="submit" value="Delete" class="btn btn-danger">
@@ -92,7 +89,7 @@ datiUtente[?] ==> 0=username, 1=email
                                 <!--Risolve il problema con il CSRF token-->
                             </div>
                         </div>
-                    </form>
+                    
                 </div>
             </div>
         </div>
@@ -106,49 +103,10 @@ datiUtente[?] ==> 0=username, 1=email
             <!--Risolve il problema con il CSRF token-->
             <a href="/add_article" class="btn btn-success">Add Article</a>
         </div>
-
+    </form>
         <hr>
     </div>
 </div>
-
-
-<!--
-    <h1 class="display-3 text-center">
-      DASHBOARD
-      <p class="display-4">Welcome {{ datiUtente[2] }}</p> 
-    </h1>
-    <a href="/add_article" class="btn btn-success">Add Article</a> <hr>
-    <table class="table table-striped">
-        <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Date</th>
-            <th></th>
-            <th></th>
-        </tr>
-        {%for article in articles%}
-            <tr>
-                <td>{{article[0]}}</td>
-                <td>{{article[1]}}</td>
-                <td>{{article[2]}}</td>
-                <td>{{article[4]}}</td>
-                <td><a href="edit_article/{{article[0]}}" class="btn btn-warning pull-right">Edit</a></td>
-                <td>
-                    <form action="{{url_for('articlesblueprint.delete_article', id = article[0])}}" method="post">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input type="submit" value="Delete" class="btn btn-danger">
-                    </form>
-                </td>
-            </tr>
-        {%endfor%}
-    </table>
-
--->
-
-
-
-
 
 
 {%endblock%}

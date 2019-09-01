@@ -1,19 +1,23 @@
-from main.utility import create_connection, is_logged_in
-from wtforms import Form, StringField, TextAreaField, PasswordField, validators
-from flask import Flask, render_template, flash, redirect, url_for, session, request, logging, g,Blueprint
-import sqlite3
+from main.utility import is_logged_in
+from wtforms import StringField, TextAreaField
+from flask import render_template, flash, redirect, url_for, session, request, Blueprint
+from flask_wtf import FlaskForm
+from wtforms.validators import DataRequired, Length
+
 articlesblueprint = Blueprint('articlesblueprint', __name__)
+
+
+# Article form class
+
+class ArticleForm(FlaskForm):
+    title = StringField('Title', validators=[DataRequired(), Length(min=5, max=30)])
+    body = TextAreaField('Body', validators=[DataRequired(), Length(min=30)])
 
 # Lista articoli
 @articlesblueprint.route('/articles')
 def articles():
-    # Create cursor
-    _, cursor = create_connection()
-    # Get articles
-    result = cursor.execute("SELECT * FROM articles")
-    articles = result.fetchall()
-    # Close connection
-    cursor.close()
+    from app import Articles
+    articles = Articles.query.all()
     if articles:
         return render_template('page/articles.html', articles=articles)
     else:
@@ -24,39 +28,24 @@ def articles():
 # Single article
 @articlesblueprint.route('/article/<string:id>/')
 def article(id):
-    _, cursor = create_connection()
+    from app import Articles
     # Get article
-    result = cursor.execute("SELECT * FROM articles WHERE id = ?", [id])
-    article = result.fetchone()
+    article = Articles.query.filter(Articles.id == id).first()
     return render_template('page/article.html', article=article)
 
-
-# Article form class
-
-class ArticleForm(Form):
-    title = StringField('Title', [validators.Length(min=1, max=200)])
-    body = TextAreaField('Body', [validators.Length(min=30)])
 
 # Add article
 @articlesblueprint.route('/add_article', methods=["GET", "POST"])
 @is_logged_in  # per accedere alla dashboard verifico che l'utente sia loggato
 def add_article():
     form = ArticleForm(request.form)
-    if request.method == 'POST' and form.validate():
-        title = form.title.data
-        body = form.body.data
-        # Create cursor
-        db = sqlite3.connect('./myflaskapp.db')
-        cursor = db.cursor()
-        # Execute
-        cursor.execute("INSERT INTO articles (title,body,author) VALUES (?,?,?)",
-                       (title, body, session['username']))
-        # Commit to DB
-        db.commit()
-        # Close connection
-        cursor.close()
+    if form.validate_on_submit():
+        from app import db, Articles
+        article = Articles(title=form.title.data, body=form.body.data, author=session['username'])
+        db.session.add(article)
+        db.session.commit()
         flash('Article created!', 'success')
-        return redirect(url_for('users.account'))
+        return redirect(url_for('.article', id=article.id))
     return render_template('page/add_article.html', form=form)
 
 
@@ -64,47 +53,27 @@ def add_article():
 @articlesblueprint.route('/edit_article/<string:id>', methods=["GET", "POST"])
 @is_logged_in  # per accedere alla dashboard verifico che l'utente sia loggato
 def edit_article(id):
-    # Create cursor
-    db = sqlite3.connect('./myflaskapp.db')
-    cursor = db.cursor()
-
-    # Get article by id
-    result = cursor.execute("SELECT * FROM articles WHERE id = ?", [id])
-    article = result.fetchone()
-    # Get form
+    from app import db, Articles
+    article = Articles.query.filter(Articles.id == id).first()
     form = ArticleForm(request.form)
-    # Populate article form fields
-    form.title.data = article[1]
-    form.body.data = article[3]
-    if request.method == 'POST' and form.validate():
-        title = request.form['title']
-        body = request.form['body']
-        # Create cursor
-        db = sqlite3.connect('./myflaskapp.db')
-        cursor = db.cursor()
-        # Execute
-        cursor.execute(
-            "UPDATE articles SET title=?,body=? WHERE id=?", (title, body, id))
-        # Commit to DB
-        db.commit()
-        # Close connection
-        cursor.close()
+    if form.validate_on_submit():
+        article.title = form.title.data
+        article.body = form.body.data
+        db.session.add(article)
+        db.session.commit()
         flash('Article Update!', 'success')
-        return redirect(url_for('users.account'))
+        return redirect(url_for('.article', id=article.id))
+    elif request.method == 'GET':
+        form.title.data = article.title
+        form.body.data = article.body
     return render_template('page/edit_article.html', form=form)
 
 # Delete article
 @articlesblueprint.route('/delete_article/<string:id>', methods=['POST'])
 @is_logged_in
 def delete_article(id):
-     # Create cursor
-    db = sqlite3.connect('./myflaskapp.db')
-    cursor = db.cursor()
-
-    # Execute
-    cursor.execute("DELETE FROM articles where id=?", [id])
-    db.commit()
-    # Close connection
-    cursor.close()
+    from app import db, Articles
+    Articles.query.filter(Articles.id == id).delete()
+    db.session.commit()
     flash('Article Deleted!', 'success')
     return redirect(url_for('users.account'))

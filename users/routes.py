@@ -1,11 +1,7 @@
-from flask import Flask, render_template, flash, redirect, url_for, session, request, Blueprint
-from wtforms import Form, StringField, TextAreaField, PasswordField, validators
-from flask_wtf import FlaskForm
-from main.utility import create_connection, RegisterForm, is_logged_in, UpdateAccountForm
+from flask import render_template, flash, redirect, url_for, session, request, Blueprint
+from main.utility import RegisterForm, is_logged_in, UpdateAccountForm
 from passlib.hash import sha256_crypt
-
-import sqlite3
-
+from sqlalchemy import or_
 
 users = Blueprint('users', __name__)
 
@@ -15,39 +11,31 @@ users = Blueprint('users', __name__)
 @is_logged_in  # per accedere alla dashboard verifico che l'utente sia loggato
 def account():
     form = UpdateAccountForm(request.form)
+    from app import Users, Articles
     if form.validate_on_submit():
-        newusername = form.username.data
-        newemail = form.email.data
-        db, cursor = create_connection()
-        db1, cursor2 = create_connection()
-        cursor.execute(
-            "UPDATE users SET username=?,email=? WHERE username=?", (newusername, newemail, session['username']))
-        db.commit()
-        cursor2.execute("UPDATE articles SET author=? WHERE author=?", 
-                        (newusername, session['username'])) #al cambio di username anche l'autore degli articoli cambia
-        db1.commit()
-        cursor2.close()
-        cursor.close()
-        session['username'] = newusername
+        from app import db
+        articles = Articles.query.filter(
+            Articles.author == session['username']).all()
+        for article in articles:
+            article.author = form.username.data
+        user = Users.query.filter(
+            Users.username == session['username']).first()
+        user.username = form.username.data
+        user.email = form.email.data
+        session['username'] = form.username.data
+        db.session.add(user, articles)
+        db.session.commit()
         flash('Your account has been updated!', 'success')
         return redirect(url_for('users.account'))
     elif request.method == 'GET':
+        #campi compilati con i dati attuali prima dell'eventuale modifica
         form.username.data = session['username']
-        form.email.data = session['email']
-    # Create cursor
-    _, cursor = create_connection()
-    _, cursor2 = create_connection()
-    # Get articles
-    query1 = cursor.execute(
-        "SELECT * FROM articles WHERE author=?", (session['username'],))
-    query2 = cursor2.execute(
-        "SELECT username,email FROM users WHERE username=?", (session['username'],))
-    articles = query1.fetchall()
-    datiUtente = query2.fetchall()[0]
-    if articles:
-        return render_template('page/account.html', articles=articles, form=form, datiUtente=datiUtente)
-    else:
-        return render_template('page/account.html', form=form, datiUtente=datiUtente)
+        form.email.data = Users.query.filter(Users.username == session['username']).first().email
+    user = Users.query.filter(
+        Users.username == session['username']).first()
+    articles = Articles.query.filter(
+            Articles.author == session['username']).all()
+    return render_template('page/account.html', form=form, user=user, articles=articles)
 
 
 # User register
@@ -57,32 +45,17 @@ def register():
         flash("You are already login", 'danger')
         return redirect(url_for('users.account'))
     form = RegisterForm(request.form)
-    if request.method == 'POST' and form.validate():
-        name = form.name.data
-        email = form.email.data
-        username = form.username.data
-        password = sha256_crypt.hash(str(form.password.data))
-        db, cursor1 = create_connection()
-        cursor1.execute("SELECT email FROM users WHERE email=?", (email,))
-        _, cursor2 = create_connection()
-        cursor2.execute(
-            "SELECT username FROM users WHERE username=?", (username,))
-        result1 = cursor1.fetchone()
-        result2 = cursor2.fetchone()
-        if result1 and result2:
-            flash("The email and username still exists both!", 'danger')
-        elif result1:
-            flash("The email still exists!", 'danger')
-        elif result2:
-            flash("The username still exists!", 'danger')
+    if form.validate_on_submit():
+        from app import Users, db
+        if Users.query.filter(or_(Users.username == form.username.data, Users.email)).first():
+            flash("Change your email or username", 'danger')
         else:
-            cursor1.execute("INSERT INTO users(name,email,username,password) VALUES (?,?,?,?)",
-                            (name, email, username, password))
-            db.commit()
-            flash("You are now registered and can log in", 'success')
-            redirect(url_for('users.account'))
-        cursor1.close()
-        cursor2.close()
+            hashed_password = sha256_crypt.hash(str(form.password.data))
+            user = Users(name=form.name.data, username=form.username.data,
+                         email=form.email.data, password=hashed_password)
+            db.session.add(user)
+            db.session.commit()
+            flash("Congratulations, you're registered!", 'success')
     return render_template('page/register.html', form=form)
 
 
@@ -93,40 +66,18 @@ def login():
         flash("You are already log-in", 'danger')
         return redirect(url_for('users.account'))
     if request.method == 'POST':
+        from app import Users
         # Get Form Fields
-        username = request.form['username']
+        username_candidate = request.form['username']
         password_candidate = request.form['password']
-        # Create cursor
-        _, cursor = create_connection()
-        result = cursor.execute(
-            "SELECT COUNT(*) FROM users WHERE username = ?", [username]).fetchone()
-        if result[0] > 0:  # verifico che ci sia un utente registrato con quell'username
-            # Get stored hash
-            data = cursor.execute(
-                "SELECT * FROM users WHERE username = ?", [username]).fetchone()
-            # password si trova al 5 posto nella tupla restituita da fetchone()
-            # Close connection
-            cursor.close()
-            password = data[4]
-            # Compare password
-            if sha256_crypt.verify(password_candidate, password):
-                _, cursor = create_connection()
-                qEmail = cursor.execute("SELECT email from users WHERE username=?", [
-                                        username]).fetchone()
-                cursor.close()
-                # Passed
-                session['logged_in'] = True
-                session['username'] = username
-                session['email'] = qEmail[0]
-                flash('You are now logged in', 'success')
-                return redirect(url_for('users.account'))
-            else:
-                error = 'Invalid login'
-                return render_template('page/login.html', error=error)
-            # Close connection
-            cursor.close()
+        user = Users.query.filter_by(username=username_candidate).first()
+        if user and sha256_crypt.verify(password_candidate, user.password):
+            session['logged_in'] = True
+            session['username'] = username_candidate
+            flash('You are now logged in', 'success')
+            return redirect(url_for('users.account'))
         else:
-            error = 'Username not found'
+            error = 'Invalid login'
             return render_template('page/login.html', error=error)
     return render_template('page/login.html')
 

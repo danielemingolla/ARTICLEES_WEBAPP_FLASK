@@ -1,7 +1,7 @@
 {% extends 'layouts/base_layout.html' %} 
 {%block body%}
-<h1>{{ article[1] }}</h1>
-<small>Written by {{ article[2] }} on {{ article[4] }}</small>
+<h1>{{ article.title }}</h1>
+<small>Written by {{ article.author}} on {{ article.create_date }}</small>
 <hr>
-<div>{{article[3] | safe}}</div>
+<div>{{article.body| safe}}</div>
 {%endblock%}
