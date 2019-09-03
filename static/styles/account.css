@@ -28,3 +28,8 @@
   color: black;
   font-size: 15px;
 }
+#avatarpicture{
+  margin-bottom: 15px;
+  width: 200px;
+  height: 200px;
+}

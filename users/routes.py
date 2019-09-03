@@ -19,7 +19,7 @@ def account():
         articles = Articles.query.filter(
             Articles.author == session['username']).all()
         if form.picture.data:
-            picture_file = save_picture(form.picture.data)
+            picture_file = save_picture(form.picture.data, user.image_file)
             user.image_file = picture_file
         for article in articles:
             article.author = form.username.data

@@ -87,7 +87,6 @@
                             <label class="col-lg-3 col-form-label form-control-label">Avatar</label>
                             <div class="col-lg-9">
                                 {{form.picture(class="form-control-file")}}
-
                                 {% if form.picture.errors %}
                                 {% for error in form.picture.errors %}
                                 <span class="text-danger">{{ error }}</span></br>
@@ -107,7 +106,7 @@
             </div>
         </div>
         <div class="col-lg-4 order-lg-1 text-center">
-            <img src="{{user.image_file}}" class="mx-auto img-fluid rounded-circle d-block" alt="avatar">
+            <img src="{{user.image_file}}" class="mx-auto img-fluid rounded-circle d-block" alt="avatar" id="avatarpicture">
             <a href="/add_article" class="btn btn-success by-3">Add Article</a><br>
         </div>
         <hr>

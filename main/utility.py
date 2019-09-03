@@ -5,6 +5,7 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from wtforms.validators import ValidationError
+from PIL import Image
 import secrets
 import os
 
@@ -66,10 +67,16 @@ def is_logged_in(f):
 # Restituisce path dell'immagine da utilizzare come avatar rinominata con un token
 
 
-def save_picture(form_picture):
+def save_picture(form_picture, old_photo_path):
+    # elimino foto profilo precedente prima di caricare la nuova
+    if 'default' not in old_photo_path.split():
+        os.remove(old_photo_path)
     random_hex = secrets.token_hex(8)
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = random_hex + f_ext
     picture_path = os.path.join('static\profilepics', picture_fn)
-    form_picture.save(picture_path)
+    output_size = (200, 200)  # riduco dimensioni immagine, risparmio memoria e velocizzo il caricamento della pagina
+    i = Image.open(form_picture)
+    i.thumbnail(output_size)
+    i.save(picture_path, quality=100, optimize=True)
     return picture_path
