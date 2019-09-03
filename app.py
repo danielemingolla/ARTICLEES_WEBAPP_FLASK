@@ -16,7 +16,8 @@ class Users(db.Model):
     name = db.Column(db.String(50), nullable=False)
     password = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(20), nullable=False)
-    image_file = db.Column(db.String(20), nullable=False, default='static/profilepics/default.png')
+    image_file = db.Column(db.String(20), nullable=False,
+                           default='static/profilepics/default.png')
     username = db.Column(db.String(20), nullable=False)
     register_date = db.Column(db.DateTime, default=db.func.current_timestamp())
 
