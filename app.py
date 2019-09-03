@@ -1,6 +1,5 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
 from article.routes import articlesblueprint
 from users.routes import users
 from main.routes import mainroutes
@@ -17,8 +16,9 @@ class Users(db.Model):
     name = db.Column(db.String(50), nullable=False)
     password = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(20), nullable=False)
+    image_file = db.Column(db.String(20), nullable=False, default='static/profilepics/default.png')
     username = db.Column(db.String(20), nullable=False)
-    register_date = db.Column(db.DateTime, default=datetime.now)
+    register_date = db.Column(db.DateTime, default=db.func.current_timestamp())
 
 
 class Articles(db.Model):
@@ -26,7 +26,7 @@ class Articles(db.Model):
     title = db.Column(db.String(50), nullable=False)
     author = db.Column(db.String(20), nullable=False)
     body = db.Column(db.String(20), nullable=False)
-    create_date = db.Column(db.DateTime, default=datetime.now)
+    create_date = db.Column(db.DateTime, default=db.func.current_timestamp())
 
 
 app.register_blueprint(users)
@@ -34,14 +34,6 @@ app.register_blueprint(articlesblueprint)
 app.register_blueprint(mainroutes)
 app.register_blueprint(utility)
 
-
-'''
-Tabella con autoincrement e ora locale funzionante
-
-# CREATE TABLE articles (id INTEGER PRIMARY KEY AUTOINCREMENT,title VARCHAR(255), author VARCHAR(100), body TEXT, create_date TIMESTAMP DEFAULT(datetime('now', 'localtime')));
-
-#CREATE TABLE users (id integer primary key,name VARCHAR(100) not null,email VARCHAR(100) not null,username VARCHAR(100) not null,password VARCHAR(30) NOT null,register_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,unique (username, email));
-'''
 
 if __name__ == '__main__':
     app.secret_key = "secret123"

@@ -1,5 +1,5 @@
 from flask import render_template, flash, redirect, url_for, session, request, Blueprint
-from main.utility import RegisterForm, is_logged_in, UpdateAccountForm
+from main.utility import RegisterForm, is_logged_in, UpdateAccountForm, save_picture
 from passlib.hash import sha256_crypt
 from sqlalchemy import or_
 
@@ -10,16 +10,19 @@ users = Blueprint('users', __name__)
 @users.route('/account', methods=['GET', 'POST'])
 @is_logged_in  # per accedere alla dashboard verifico che l'utente sia loggato
 def account():
-    form = UpdateAccountForm(request.form)
+    form = UpdateAccountForm()
     from app import Users, Articles
     if form.validate_on_submit():
         from app import db
-        articles = Articles.query.filter(
-            Articles.author == session['username']).all()
-        for article in articles:
-            article.author = form.username.data
         user = Users.query.filter(
             Users.username == session['username']).first()
+        articles = Articles.query.filter(
+            Articles.author == session['username']).all()
+        if form.picture.data:
+            picture_file = save_picture(form.picture.data)
+            user.image_file = picture_file
+        for article in articles:
+            article.author = form.username.data
         user.username = form.username.data
         user.email = form.email.data
         session['username'] = form.username.data
@@ -28,13 +31,14 @@ def account():
         flash('Your account has been updated!', 'success')
         return redirect(url_for('users.account'))
     elif request.method == 'GET':
-        #campi compilati con i dati attuali prima dell'eventuale modifica
+        # campi compilati con i dati attuali prima dell'eventuale modifica
         form.username.data = session['username']
-        form.email.data = Users.query.filter(Users.username == session['username']).first().email
+        form.email.data = Users.query.filter(
+            Users.username == session['username']).first().email
     user = Users.query.filter(
         Users.username == session['username']).first()
     articles = Articles.query.filter(
-            Articles.author == session['username']).all()
+        Articles.author == session['username']).all()
     return render_template('page/account.html', form=form, user=user, articles=articles)
 
 
