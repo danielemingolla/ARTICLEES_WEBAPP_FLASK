@@ -1,0 +1,28 @@
+/*NAVBAR*/
+.navbar {
+    font-size: 20px !important;
+  }
+  
+  .navbar a:hover {
+    color: rgba(0, 0, 0, 0.4) !important;
+  }
+  
+  .navbar-toggler {
+    border: none;
+    outline: none;
+  }
+  .navbar-toggler:focus {
+    outline: 0;
+    box-shadow: none !important;
+  }
+
+  @media (max-width: 768px) {
+    .navbar .navbar-nav {
+        justify-content: center;
+    }
+
+    .navbar .navbar-collapse {
+        text-align: center;
+    }
+  
+}

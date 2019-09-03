@@ -38,24 +38,6 @@ h1 {
 }
 
 
-/*NAVBAR*/
-.navbar {
-  font-size: 20px !important;
-}
-
-.navbar a:hover {
-  color: rgba(0, 0, 0, 0.4) !important;
-}
-
-.navbar-toggler {
-  border: none;
-  outline: none;
-}
-.navbar-toggler:focus {
-  outline: 0;
-  box-shadow: none !important;
-}
-
 /*FOOTER*/
 footer {
   position: absolute;
