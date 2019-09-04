@@ -10,4 +10,9 @@ def index():
 def about():
     return render_template('page/about.html')
 
+# Shop
+@mainroutes.route('/shop')
+def shop():
+    return render_template('page/shop.html')
+
 
