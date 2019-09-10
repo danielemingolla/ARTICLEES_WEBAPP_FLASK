@@ -10,13 +10,14 @@ articlesblueprint = Blueprint('articlesblueprint', __name__)
 # Article form class
 
 class ArticleForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired(), Length(min=5, max=30)])
+    title = StringField('Title', validators=[
+                        DataRequired(), Length(min=5, max=30)])
     body = TextAreaField('Body', validators=[DataRequired(), Length(min=30)])
 
 # Lista articoli
 @articlesblueprint.route('/articles')
 def articles():
-    from app import Articles
+    from models import Articles
     articles = Articles.query.all()
     if articles:
         return render_template('page/articles.html', articles=articles)
@@ -28,7 +29,7 @@ def articles():
 # Single article
 @articlesblueprint.route('/article/<string:id>/')
 def article(id):
-    from app import Articles
+    from models import Articles
     # Get article
     article = Articles.query.filter(Articles.id == id).first()
     return render_template('page/article.html', article=article)
@@ -40,8 +41,10 @@ def article(id):
 def add_article():
     form = ArticleForm(request.form)
     if form.validate_on_submit():
-        from app import db, Articles
-        article = Articles(title=form.title.data, body=form.body.data, author=session['username'])
+        from app import db
+        from models import Articles
+        article = Articles(title=form.title.data,
+                           body=form.body.data, author=session['username'])
         db.session.add(article)
         db.session.commit()
         flash('Article created!', 'success')
@@ -53,7 +56,8 @@ def add_article():
 @articlesblueprint.route('/edit_article/<string:id>', methods=["GET", "POST"])
 @is_logged_in  # per accedere alla dashboard verifico che l'utente sia loggato
 def edit_article(id):
-    from app import db, Articles
+    from app import db
+    from models import Articles
     article = Articles.query.filter(Articles.id == id).first()
     form = ArticleForm(request.form)
     if form.validate_on_submit():
@@ -72,8 +76,9 @@ def edit_article(id):
 @articlesblueprint.route('/delete_article/<string:id>', methods=['POST'])
 @is_logged_in
 def delete_article(id):
-    from app import db, Articles
+    from app import db
+    from models import Articles
     Articles.query.filter(Articles.id == id).delete()
     db.session.commit()
     flash('Article Deleted!', 'success')
-    return redirect(url_for('users.account'))
+    return (url_for('users.account'))

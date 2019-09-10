@@ -1,0 +1,22 @@
+{% extends 'layouts/base_layout.html' %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="../../static/styles/thanks.css" />
+{%endblock%}
+
+{% block body %}
+<div class="jumbotron text-center my-4">
+    <h1 class="display-4">HAI ACQUISTATO:<br> <u>{{product.name}}</u> A SOLI {{product.price}}0€ !</h1>
+    <p class="lead">Abbiamo ricevuto il tuo ordine, riceverai un'email con maggiori dettagli riguardanti il tuo
+        acquisto.</p>
+    <figure class="figure">
+        <img src="{{product.image_file}}" class="figure-img img-fluid rounded" alt="Picture {{product.id}}">
+        <figcaption class="figure-caption">{{product.name}}</figcaption>
+    </figure>
+    <hr class="my-4">
+    <p>Lascia una recensione su Google, ci aiuterà a crescere!</p>
+    <p class="lead">
+        <a class="btn btn-outline-dark" href="/shop" role="button">VAI AL NEGOZIO</a>
+    </p>
+</div>
+{%endblock%}

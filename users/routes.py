@@ -11,7 +11,7 @@ users = Blueprint('users', __name__)
 @is_logged_in  # per accedere alla dashboard verifico che l'utente sia loggato
 def account():
     form = UpdateAccountForm()
-    from app import Users, Articles
+    from models import Users, Articles
     if form.validate_on_submit():
         from app import db
         user = Users.query.filter(
@@ -50,7 +50,8 @@ def register():
         return redirect(url_for('users.account'))
     form = RegisterForm(request.form)
     if form.validate_on_submit():
-        from app import Users, db
+        from app import db
+        from models import Users
         if Users.query.filter(or_(Users.username == form.username.data, Users.email)).first():
             flash("Change your email or username", 'danger')
         else:
@@ -70,7 +71,7 @@ def login():
         flash("You are already log-in", 'danger')
         return redirect(url_for('users.account'))
     if request.method == 'POST':
-        from app import Users
+        from models import Users
         # Get Form Fields
         username_candidate = request.form['username']
         password_candidate = request.form['password']

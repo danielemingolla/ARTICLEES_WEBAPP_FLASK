@@ -1,4 +1,6 @@
 from flask import Blueprint, render_template
+
+
 mainroutes = Blueprint('mainroutes', __name__)
 # Index
 @mainroutes.route('/')
@@ -9,10 +11,3 @@ def index():
 @mainroutes.route('/about')
 def about():
     return render_template('page/about.html')
-
-# Shop
-@mainroutes.route('/shop')
-def shop():
-    return render_template('page/shop.html')
-
-

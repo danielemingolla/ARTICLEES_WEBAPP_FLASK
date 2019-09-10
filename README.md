@@ -13,7 +13,7 @@
 - [ ] Full responsive
 
 # Requirements
- - Python 2 or 3
+ - Python 3 <=
  - Sqlite3 (Every database compatible with SQLAlchemy)
  - Flask
 
