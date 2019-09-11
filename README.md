@@ -15,7 +15,7 @@
 # Requirements
  - Python 3 <=
  - Sqlite3 (Every database compatible with SQLAlchemy)
- - Flask
+ - Flask 1.1.1 <=
 
 # How to running the app
  ```

@@ -1,4 +1,4 @@
-from flask import Flask, flash, redirect, url_for
+from flask import Flask, flash, redirect, url_for, render_template
 from flask_sqlalchemy import SQLAlchemy
 from article.routes import articlesblueprint
 from users.routes import users
@@ -20,7 +20,17 @@ app.register_blueprint(shopblueprint)
 @app.errorhandler(500)
 def internal_server_error(e):
     flash("Unauthorized access!", 'danger')
-    return redirect(url_for('mainroutes.index'))  
+    return redirect(url_for('mainroutes.index'))
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('page/404.html'), 404
+
+
+@app.errorhandler(405)
+def unauthorized_access(e):
+    return render_template('page/405.html'), 405
 
 
 if __name__ == '__main__':
