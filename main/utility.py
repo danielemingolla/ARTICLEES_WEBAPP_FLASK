@@ -1,4 +1,4 @@
-from flask import Blueprint, flash, redirect, url_for, session
+from flask import Blueprint, flash, redirect, url_for, session, render_template
 from functools import wraps
 from wtforms import SubmitField, PasswordField,  StringField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
@@ -22,7 +22,7 @@ class UpdateAccountForm(FlaskForm):
     submit = SubmitField('Update')
 
     def validate_username(self, username):
-        from app import Users
+        from models import Users
         if username.data != session['username']:
             user = Users.query.filter_by(username=username.data).first()
             if user:
@@ -30,7 +30,7 @@ class UpdateAccountForm(FlaskForm):
                 raise ValidationError()
 
     def validate_email(self, email):
-        from app import Users
+        from models import Users
         if email.data != Users.query.filter(Users.username == session['username']).first().email:
             user = Users.query.filter_by(email=email.data).first()
             if user:
@@ -74,9 +74,25 @@ def save_picture(form_picture, old_photo_path):
     random_hex = secrets.token_hex(8)
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = random_hex + f_ext
-    picture_path = os.path.join('static\profilepics', picture_fn)
+    picture_path = os.path.join('static/profilepics', picture_fn)
     output_size = (200, 200)  # riduco dimensioni immagine, risparmio memoria e velocizzo il caricamento della pagina
     i = Image.open(form_picture)
     i.thumbnail(output_size)
     i.save(picture_path, quality=100, optimize=True)
     return picture_path
+
+# Only works when Debug Mode is, avoid to access to thanks page
+@utility.app_errorhandler(500)
+def internal_server_error(e):
+    flash("Unauthorized access!", 'danger')
+    return redirect(url_for('mainroutes.index'))
+
+
+@utility.app_errorhandler(404)
+def page_not_found(e):
+    return render_template('page/404.html'), 404
+
+
+@utility.app_errorhandler(405)
+def unauthorized_access(e):
+    return render_template('page/405.html'), 405

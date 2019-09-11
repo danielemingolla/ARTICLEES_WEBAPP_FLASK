@@ -12,8 +12,5 @@
       {{ render_field(form.body, class_="form-control", id="editor") }} <!--l'ID serve per sostituire l'editor con CKEditor-->
     </div>
     <p><input class="btn btn-primary" type="submit" value="Submit">
-      {% if form.errors %}
-        {{ form.errors }}
-      {% endif %}
   </form>
 {% endblock %}

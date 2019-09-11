@@ -81,4 +81,4 @@ def delete_article(id):
     Articles.query.filter(Articles.id == id).delete()
     db.session.commit()
     flash('Article Deleted!', 'success')
-    return (url_for('users.account'))
+    return redirect(url_for('users.account'))

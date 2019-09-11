@@ -16,22 +16,6 @@ app.register_blueprint(mainroutes)
 app.register_blueprint(utility)
 app.register_blueprint(shopblueprint)
 
-# Only works when Debug Mode is, avoid to access to thanks page
-@app.errorhandler(500)
-def internal_server_error(e):
-    flash("Unauthorized access!", 'danger')
-    return redirect(url_for('mainroutes.index'))
-
-
-@app.errorhandler(404)
-def page_not_found(e):
-    return render_template('page/404.html'), 404
-
-
-@app.errorhandler(405)
-def unauthorized_access(e):
-    return render_template('page/405.html'), 405
-
 
 if __name__ == '__main__':
     app.secret_key = "secret123"
