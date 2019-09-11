@@ -4,3 +4,4 @@ __pycache__/
 *.jpg
 *.png
 __init__.py
+credentials.txt

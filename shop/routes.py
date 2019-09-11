@@ -1,9 +1,17 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request
 from main.utility import is_logged_in
 import stripe
+import re
 
-pub_key = 'pk_test_UnUu9uGYcKacbUqWioOZXUZn00YIWFkeEO'
-secret_key = 'sk_test_lAWXy2zeGH9EWSA3toEYmPjq00JHUwiUwr'
+# Get Stripe's Api from credentials.txt
+patternApi = re.compile(r'(\D\D_test_\w+)')
+with open('credentials.txt', 'r') as f:
+    contents = f.read()
+    apiStripe = patternApi.findall(contents)
+    pub_key = apiStripe[0]
+    secret_key = apiStripe[1]
+f.closed
+
 
 stripe.api_key = secret_key
 
