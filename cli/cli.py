@@ -5,6 +5,12 @@ import click
 cmd_folder = os.path.join(os.path.dirname(__file__), 'commands')
 cmd_prefix = 'cmd_'
 
+'''
+ Per far riconoscere il comando 'articlee' è necessario
+ eseguire prima il comando 'python -m pip install -e .'
+ e
+'''
+
 
 class CLI(click.MultiCommand):
     def list_commands(self, ctx):

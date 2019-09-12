@@ -12,18 +12,20 @@ app = create_app()
 db.app = app
 fake = Faker()
 
+# article add <--p-articles/--p-users> <--count= INTEGER>
+
 @click.command()
 @click.option('--p-articles/--p-users', default=True, help='Populate Users o Article?')
+@click.option('--count',default=1, type=click.IntRange(min=1), help='Number of row to generate.')
 @click.argument('path', default='articlee')
-def cli(p_articles,path):
+def cli(p_articles,count,path):
     """
     Generate fake data to populate database.
     """
     click.echo('Working...')
     if p_articles:
-        
         random_title = []
-        for _ in range(0, 5):
+        for _ in range(count):
             random_title.append(fake.company())
         random_title = list(set(random_title))
         while True:
@@ -41,7 +43,7 @@ def cli(p_articles,path):
                 db.session.commit()
     else:
         random_name = []
-        for _ in range(0, 5):
+        for _ in range(count):
             random_name.append(fake.name())
         random_name = list(set(random_name))
         while True:

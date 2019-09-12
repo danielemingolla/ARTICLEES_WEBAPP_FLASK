@@ -1,9 +1,5 @@
 from setuptools import setup
-'''
- Per far riconoscere il comando 'articlee' è necessario
- eseguire prima il comando 'python -m pip install -e .'
- e
-'''
+
 setup(
     name='Articlee-CLI',
     version='1.0',
