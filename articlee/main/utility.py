@@ -6,6 +6,7 @@ from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from wtforms.validators import ValidationError
 from PIL import Image
+from articlee.models import Users
 import secrets
 import os
 
@@ -22,7 +23,6 @@ class UpdateAccountForm(FlaskForm):
     submit = SubmitField('Update')
 
     def validate_username(self, username):
-        from models import Users
         if username.data != session['username']:
             user = Users.query.filter_by(username=username.data).first()
             if user:
@@ -30,7 +30,6 @@ class UpdateAccountForm(FlaskForm):
                 raise ValidationError()
 
     def validate_email(self, email):
-        from models import Users
         if email.data != Users.query.filter(Users.username == session['username']).first().email:
             user = Users.query.filter_by(email=email.data).first()
             if user:

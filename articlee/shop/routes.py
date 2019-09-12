@@ -1,10 +1,11 @@
 from flask import Blueprint, render_template, request
-from main.utility import is_logged_in
+from articlee.main.utility import is_logged_in
+from articlee.models import Product
 import stripe
 import json
 
 # Get Stripe's Api from credentials.txt
-with open('credentials.txt') as json_file:
+with open('articlee/credentials.txt') as json_file:
     data = json.load(json_file)
     pub_key = data['pub_key_Stripe']
     secret_key = data['sec_key_Stripe']
@@ -21,7 +22,6 @@ def shop():
 
 @shopblueprint.route('/pay/<string:id>/', methods=['POST'])
 def pay(id):
-    from models import Product
     # Get product
     product = Product.query.filter(Product.id == id).first()
     try:

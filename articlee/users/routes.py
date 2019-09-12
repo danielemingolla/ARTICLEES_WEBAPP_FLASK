@@ -1,5 +1,7 @@
 from flask import render_template, flash, redirect, url_for, session, request, Blueprint
-from main.utility import RegisterForm, is_logged_in, UpdateAccountForm, save_picture
+from articlee.main.utility import RegisterForm, is_logged_in, UpdateAccountForm, save_picture
+from articlee.models import Users, Articles
+from articlee import db
 from passlib.hash import sha256_crypt
 from sqlalchemy import or_
 
@@ -11,9 +13,8 @@ users = Blueprint('users', __name__)
 @is_logged_in  # per accedere alla dashboard verifico che l'utente sia loggato
 def account():
     form = UpdateAccountForm()
-    from models import Users, Articles
+    
     if form.validate_on_submit():
-        from app import db
         user = Users.query.filter(
             Users.username == session['username']).first()
         articles = Articles.query.filter(
@@ -50,8 +51,6 @@ def register():
         return redirect(url_for('users.account'))
     form = RegisterForm(request.form)
     if form.validate_on_submit():
-        from app import db
-        from models import Users
         if Users.query.filter(or_(Users.username == form.username.data, Users.email)).first():
             flash("Change your email or username", 'danger')
         else:
@@ -71,7 +70,6 @@ def login():
         flash("You are already log-in", 'danger')
         return redirect(url_for('users.account'))
     if request.method == 'POST':
-        from models import Users
         # Get Form Fields
         username_candidate = request.form['username']
         password_candidate = request.form['password']
