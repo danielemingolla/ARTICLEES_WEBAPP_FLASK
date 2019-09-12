@@ -2,14 +2,10 @@ from flask import Blueprint, render_template, request
 from articlee.main.utility import is_logged_in
 from articlee.models import Product
 import stripe
-import json
-
-# Get Stripe's Api from credentials.txt
-with open('articlee/credentials.txt') as json_file:
-    data = json.load(json_file)
-    pub_key = data['pub_key_Stripe']
-    secret_key = data['sec_key_Stripe']
-
+import os
+    
+pub_key = os.environ.get('pub_key_Stripe')
+secret_key = os.environ.get('sec_key_Stripe')
 stripe.api_key = secret_key
 shopblueprint = Blueprint('shopblueprint', __name__)
 

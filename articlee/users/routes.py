@@ -1,9 +1,11 @@
 from flask import render_template, flash, redirect, url_for, session, request, Blueprint
 from articlee.main.utility import RegisterForm, is_logged_in, UpdateAccountForm, save_picture
 from articlee.models import Users, Articles
-from articlee import db
+from articlee import db, mail
 from passlib.hash import sha256_crypt
 from sqlalchemy import or_
+from flask_mail import Message
+
 
 users = Blueprint('users', __name__)
 
@@ -13,7 +15,7 @@ users = Blueprint('users', __name__)
 @is_logged_in  # per accedere alla dashboard verifico che l'utente sia loggato
 def account():
     form = UpdateAccountForm()
-    
+
     if form.validate_on_submit():
         user = Users.query.filter(
             Users.username == session['username']).first()
@@ -51,7 +53,7 @@ def register():
         return redirect(url_for('users.account'))
     form = RegisterForm(request.form)
     if form.validate_on_submit():
-        if Users.query.filter(or_(Users.username == form.username.data, Users.email)).first():
+        if Users.query.filter(or_(Users.username == form.username.data, Users.email == form.email.data) ).first():
             flash("Change your email or username", 'danger')
         else:
             hashed_password = sha256_crypt.hash(str(form.password.data))
@@ -59,6 +61,10 @@ def register():
                          email=form.email.data, password=hashed_password)
             db.session.add(user)
             db.session.commit()
+            msg = Message(
+                '%s you\'re registered to Articlee! Congratulations!' % form.username.data.upper(),recipients=[form.email.data])
+            msg.html = render_template('page/404.html',user=user)
+            mail.send(msg)
             flash("Congratulations, you're registered!", 'success')
     return render_template('page/register.html', form=form)
 
