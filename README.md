@@ -9,7 +9,8 @@
 # Next Features
 - [X] SLQAlchemy Support
 - [X] Add an avatar for each user
-- [ ] Accepting Payments with Stripe
+- [X] Accepting Payments with Stripe
+- [ ] Email Support
 - [ ] Full responsive
 
 # Requirements
