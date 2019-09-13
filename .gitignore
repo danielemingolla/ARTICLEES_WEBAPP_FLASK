@@ -3,4 +3,5 @@
 *.png
 __pycache__/
 .vscode/
+credentials.txt
 Articlee_CLI.egg-info

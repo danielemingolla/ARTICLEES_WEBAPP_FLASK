@@ -1,10 +1,10 @@
-from articlee.main.utility import is_logged_in
-from articlee.models import Articles
 from articlee import db
-from wtforms import StringField, TextAreaField
-from flask import render_template, flash, redirect, url_for, session, request, Blueprint
 from flask_wtf import FlaskForm
+from articlee.models import Articles
+from articlee.main.utility import is_logged_in
+from wtforms import StringField, TextAreaField
 from wtforms.validators import DataRequired, Length
+from flask import render_template, flash, redirect, url_for, session, request, Blueprint
 
 articlesblueprint = Blueprint('articlesblueprint', __name__)
 

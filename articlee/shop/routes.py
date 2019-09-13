@@ -1,11 +1,14 @@
-from flask import Blueprint, render_template, request
-from articlee.main.utility import is_logged_in
-from articlee.models import Product
 import stripe
-import os
-    
-pub_key = os.environ.get('pub_key_Stripe')
-secret_key = os.environ.get('sec_key_Stripe')
+import json
+from articlee.models import Product
+from articlee.config import read_json
+from articlee.main.utility import is_logged_in
+from flask import Blueprint, render_template, request
+
+
+# Get Stripe's Api
+pub_key, secret_key = read_json('pub_key_Stripe', 'sec_key_Stripe')
+
 stripe.api_key = secret_key
 shopblueprint = Blueprint('shopblueprint', __name__)
 
@@ -28,7 +31,7 @@ def pay(id):
             amount=int(product.price)*100,
             currency='eur',
             description=product.name
-    )
+        )
         return render_template('page/thanks.html', product=product)
     except:
         return render_template('page/405.html'), 405

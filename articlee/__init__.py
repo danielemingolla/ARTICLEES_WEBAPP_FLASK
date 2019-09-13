@@ -1,29 +1,20 @@
+import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail
-import os
+from .config import Config
 
 db = SQLAlchemy()
 mail = Mail()
 
-def create_app():
+
+def create_app(config_class=Config):
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = '5accdb11b2c10a78d7c92c5fa102ea77fcd50c2058b00f6e'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///myflaskapp.db'
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['DEBUG'] = True
-    app.config['TESTING'] = False
-    app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-    app.config['MAIL_PORT'] = 465
-    app.config['MAIL_USE_TLS'] = False
-    app.config['MAIL_USE_SSL'] = True
-    app.config['MAIL_USERNAME'] = os.environ.get('EMAIL_USER')
-    app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASSWORD')
-    app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('EMAIL_USER')
-    app.config['MAIL_MAX_EMAILS'] = 100
-    app.config['MAIL_ASCII_ATTACHMENTS'] = False
+
+    app.config.from_object(Config)
     mail.init_app(app)
     db.init_app(app)
+
     from articlee.article.routes import articlesblueprint
     from articlee.users.routes import users
     from articlee.main.routes import mainroutes

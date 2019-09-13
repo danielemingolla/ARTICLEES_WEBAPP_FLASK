@@ -1,10 +1,10 @@
-from flask import render_template, flash, redirect, url_for, session, request, Blueprint
-from articlee.main.utility import RegisterForm, is_logged_in, UpdateAccountForm, save_picture
-from articlee.models import Users, Articles
 from articlee import db, mail
-from passlib.hash import sha256_crypt
 from sqlalchemy import or_
 from flask_mail import Message
+from articlee.models import Users, Articles
+from passlib.hash import sha256_crypt
+from flask import render_template, flash, redirect, url_for, session, request, Blueprint
+from articlee.main.utility import RegisterForm, is_logged_in, UpdateAccountForm, save_picture
 
 
 users = Blueprint('users', __name__)

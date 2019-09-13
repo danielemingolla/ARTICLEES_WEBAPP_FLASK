@@ -1,14 +1,16 @@
-from flask import Blueprint, flash, redirect, url_for, session, render_template
+import os
+import json
+import secrets
+from PIL import Image
 from functools import wraps
+from flask_wtf import FlaskForm
+from articlee.models import Users
+from wtforms.validators import ValidationError
+from flask_wtf.file import FileField, FileAllowed
 from wtforms import SubmitField, PasswordField,  StringField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
-from flask_wtf import FlaskForm
-from flask_wtf.file import FileField, FileAllowed
-from wtforms.validators import ValidationError
-from PIL import Image
-from articlee.models import Users
-import secrets
-import os
+from flask import Blueprint, flash, redirect, url_for, session, render_template
+
 
 utility = Blueprint('utility', __name__)
 
@@ -19,7 +21,8 @@ class UpdateAccountForm(FlaskForm):
                            validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
-    picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
+    picture = FileField('Update Profile Picture', validators=[
+                        FileAllowed(['jpg', 'png'])])
     submit = SubmitField('Update')
 
     def validate_username(self, username):
@@ -74,7 +77,8 @@ def save_picture(form_picture, old_photo_path):
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = random_hex + f_ext
     picture_path = os.path.join('static/profilepics', picture_fn)
-    output_size = (200, 200)  # riduco dimensioni immagine, risparmio memoria e velocizzo il caricamento della pagina
+    # riduco dimensioni immagine, risparmio memoria e velocizzo il caricamento della pagina
+    output_size = (200, 200)
     i = Image.open(form_picture)
     i.thumbnail(output_size)
     i.save(picture_path, quality=100, optimize=True)
@@ -86,7 +90,7 @@ def internal_server_error(e):
     flash("Unauthorized access!", 'danger')
     return redirect(url_for('mainroutes.index'))
 
-
+# Different error handler for different error 404/405
 @utility.app_errorhandler(404)
 def page_not_found(e):
     return render_template('page/404.html'), 404
