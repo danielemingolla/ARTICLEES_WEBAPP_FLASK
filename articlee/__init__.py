@@ -1,19 +1,25 @@
 import os
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_mail import Mail
 from .config import Config
+from flask_mail import Mail
+from flask_script import Manager
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate, MigrateCommand
 
 db = SQLAlchemy()
 mail = Mail()
+migrate = Migrate()
 
 
 def create_app(config_class=Config):
     app = Flask(__name__)
-
     app.config.from_object(Config)
-    mail.init_app(app)
+
     db.init_app(app)
+    mail.init_app(app)
+    migrate.init_app(app, db)
+    manager = Manager(app)
+    manager.add_command('db', MigrateCommand)
 
     from articlee.article.routes import articlesblueprint
     from articlee.users.routes import users
@@ -25,4 +31,5 @@ def create_app(config_class=Config):
     app.register_blueprint(mainroutes)
     app.register_blueprint(utility)
     app.register_blueprint(shopblueprint)
-    return app
+    return app,manager
+

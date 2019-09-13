@@ -10,13 +10,14 @@
 - [X] SLQAlchemy Support
 - [X] Add an avatar for each user
 - [X] Accepting Payments with Stripe
-- [ ] Email Support
+- [X] Email Support
 - [ ] Full responsive
 
 # Requirements
  - Python 3 <=
  - Sqlite3 (Every database compatible with SQLAlchemy)
  - Flask 1.1.1 <=
+ - More incoming..
 
 # How to running the app
  ```

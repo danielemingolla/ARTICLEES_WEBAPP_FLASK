@@ -1,5 +1,4 @@
 import os
-import json
 import secrets
 from PIL import Image
 from functools import wraps

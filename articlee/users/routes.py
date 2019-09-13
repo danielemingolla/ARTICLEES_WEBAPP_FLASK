@@ -53,7 +53,7 @@ def register():
         return redirect(url_for('users.account'))
     form = RegisterForm(request.form)
     if form.validate_on_submit():
-        if Users.query.filter(or_(Users.username == form.username.data, Users.email == form.email.data) ).first():
+        if Users.query.filter(or_(Users.username == form.username.data, Users.email == form.email.data)).first():
             flash("Change your email or username", 'danger')
         else:
             hashed_password = sha256_crypt.hash(str(form.password.data))
@@ -61,9 +61,10 @@ def register():
                          email=form.email.data, password=hashed_password)
             db.session.add(user)
             db.session.commit()
+            
             msg = Message(
-                '%s you\'re registered to Articlee! Congratulations!' % form.username.data.upper(),recipients=[form.email.data])
-            msg.html = render_template('page/404.html',user=user)
+                '%s you\'re registered to Articlee! Congratulations!' % form.username.data.upper(), recipients=[form.email.data])
+            msg.html = render_template('page/404.html', user=user)
             mail.send(msg)
             flash("Congratulations, you're registered!", 'success')
     return render_template('page/register.html', form=form)

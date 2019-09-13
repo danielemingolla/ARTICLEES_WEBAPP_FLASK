@@ -5,7 +5,7 @@ from articlee.models import Users, Articles
 
 
 # Create an app context for the database connection.
-app = create_app()
+app,_ = create_app()
 db.app = app
 # article delete <articles/users> <--count= INTEGER>
 
@@ -44,4 +44,3 @@ def cli(articles, count, path):
     db.session.commit()
     click.echo("I've finish. Rows deleted: {}".format(
         count if count != 9999 else "ALL"))
-  
