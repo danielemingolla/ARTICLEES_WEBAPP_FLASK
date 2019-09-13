@@ -61,10 +61,9 @@ def register():
                          email=form.email.data, password=hashed_password)
             db.session.add(user)
             db.session.commit()
-            
             msg = Message(
                 '%s you\'re registered to Articlee! Congratulations!' % form.username.data.upper(), recipients=[form.email.data])
-            msg.html = render_template('page/404.html', user=user)
+            msg.html = render_template('page/email.html', user=user)
             mail.send(msg)
             flash("Congratulations, you're registered!", 'success')
     return render_template('page/register.html', form=form)

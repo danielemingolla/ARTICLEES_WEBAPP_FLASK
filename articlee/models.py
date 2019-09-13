@@ -2,6 +2,17 @@ from articlee import db
 import datetime
 
 
+'''
+in PROJECTS\BLOG_WEBAPP_FLASK>
+    from articlee import db, create_app
+    app,_ = create_app()
+    db.app = app
+    with app.app_context():
+        db.create_all()
+    exit()
+'''
+
+
 class Users(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -11,9 +22,7 @@ class Users(db.Model):
     image_file = db.Column(db.String(20), nullable=False,
                            default='static/profilepics/default.png')
     username = db.Column(db.String(20), nullable=False)
-    register_date = db.Column(db.DateTime(
-        timezone=True), default=datetime.datetime.utcnow)
-    
+    register_date = db.Column(db.DateTime, default=datetime.datetime.now)
 
 
 class Articles(db.Model):
@@ -22,7 +31,7 @@ class Articles(db.Model):
     title = db.Column(db.String(20), nullable=False)
     author = db.Column(db.String(20), nullable=False)
     body = db.Column(db.String(200), nullable=False)
-    create_date = db.Column(db.DateTime, default=db.func.current_timestamp())
+    create_date = db.Column(db.DateTime, default=datetime.datetime.now)
 
 
 class Product(db.Model):

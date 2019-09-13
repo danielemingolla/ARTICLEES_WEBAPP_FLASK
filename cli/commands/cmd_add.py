@@ -6,9 +6,8 @@ from articlee import create_app
 from articlee.models import Users, Articles
 from passlib.hash import sha256_crypt
 
-
 # Create an app context for the database connection.
-app,_ = create_app()
+app, _ = create_app()
 db.app = app
 fake = Faker()
 
@@ -36,10 +35,8 @@ def cli(p_articles, count, path):
             # Scelto di un username random tra quelli degli utenti registrati
             random_author = Users.query.filter(
                 Users.id == random.randint(1, Users.query.count())).first().username
-
             fake_body = fake.paragraph(
                 nb_sentences=20, variable_nb_sentences=True, ext_word_list=None)
-            print(fake_body)
             article = Articles(
                 title=fake_title, author=random_author, body=fake_body)
             with app.app_context():

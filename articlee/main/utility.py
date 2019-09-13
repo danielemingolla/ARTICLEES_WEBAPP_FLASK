@@ -69,19 +69,21 @@ def is_logged_in(f):
 
 
 def save_picture(form_picture, old_photo_path):
+    
     # elimino foto profilo precedente prima di caricare la nuova
-    if 'default' not in old_photo_path.split():
-        os.remove(old_photo_path)
+    if 'default.png' not in old_photo_path.split('/'):
+        os.remove('articlee/'+old_photo_path)
     random_hex = secrets.token_hex(8)
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = random_hex + f_ext
-    picture_path = os.path.join('static/profilepics', picture_fn)
+    picture_path = os.path.join('articlee/static/profilepics', picture_fn).replace('\\','/')
     # riduco dimensioni immagine, risparmio memoria e velocizzo il caricamento della pagina
     output_size = (200, 200)
     i = Image.open(form_picture)
     i.thumbnail(output_size)
+    print(picture_path)
     i.save(picture_path, quality=100, optimize=True)
-    return picture_path
+    return picture_path.replace('articlee/','')
 
 # Only works when Debug Mode is, avoid to access to thanks page
 @utility.app_errorhandler(500)
