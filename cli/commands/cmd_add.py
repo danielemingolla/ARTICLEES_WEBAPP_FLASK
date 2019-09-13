@@ -12,7 +12,7 @@ app = create_app()
 db.app = app
 fake = Faker()
 
-# article add <--p-articles/--p-users> <--count= INTEGER>
+# article add <p-articles/p-users> <--count= INTEGER>
 
 
 @click.command()
@@ -37,8 +37,8 @@ def cli(p_articles, count, path):
             random_author = Users.query.filter(
                 Users.id == random.randint(1, Users.query.count())).first().username
 
-            fake_body = str(fake.texts(
-                nb_texts=2, max_nb_chars=100, ext_word_list=None))
+            fake_body = fake.paragraph(nb_sentences=20, variable_nb_sentences=True, ext_word_list=None)
+            print(fake_body)
             article = Articles(
                 title=fake_title, author=random_author, body=fake_body)
             with app.app_context():
@@ -62,4 +62,3 @@ def cli(p_articles, count, path):
                 db.session.add(user)
                 db.session.commit()
     click.echo("I've finish. Rows generated: %d" % count)
-    return None
