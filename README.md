@@ -15,7 +15,7 @@
 
 # Requirements
  - Python 3 <=
- - Sqlite3 (Every database compatible with SQLAlchemy)
+ - MySQL 8.0 (Every database compatible with SQLAlchemy)
  - Flask 1.1.1 <=
  - More incoming..
 
