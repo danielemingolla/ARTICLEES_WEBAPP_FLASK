@@ -1,5 +1,4 @@
 import stripe
-import json
 from articlee.models import Product
 from articlee.config import read_json
 from articlee.main.utility import is_logged_in

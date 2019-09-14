@@ -31,5 +31,4 @@ def create_app(config_class=Config):
     app.register_blueprint(mainroutes)
     app.register_blueprint(utility)
     app.register_blueprint(shopblueprint)
-    return app,manager
-
+    return app, manager

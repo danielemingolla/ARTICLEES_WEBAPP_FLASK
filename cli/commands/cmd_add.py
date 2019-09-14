@@ -1,5 +1,6 @@
 import click
 import random
+import secrets
 from faker import Faker
 from articlee import db
 from articlee import create_app
@@ -33,8 +34,7 @@ def cli(p_articles, count, path):
                 break
             fake_title = random_title.pop()
             # Scelto di un username random tra quelli degli utenti registrati
-            random_author = Users.query.filter(
-                Users.id == random.randint(1, Users.query.count())).first().username
+            random_author = random.choice(Users.query.all()).username
             fake_body = fake.paragraph(
                 nb_sentences=20, variable_nb_sentences=True, ext_word_list=None)
             article = Articles(
@@ -53,7 +53,7 @@ def cli(p_articles, count, path):
             fake_name = random_name.pop()
             fake_password = sha256_crypt.hash(str("daniele"))
             fake_email = fake.email()
-            fake_username = fake.first_name()
+            fake_username = fake.first_name()+secrets.token_hex(3)
             user = Users(name=fake_name, password=fake_password,
                          email=fake_email, username=fake_username)
             with app.app_context():
