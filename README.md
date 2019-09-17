@@ -6,7 +6,7 @@
    There is a page with a list of all the articles that users are wrote and for each user there's a profile where is possible to create, edit or remove their own articles.
 
   # Preview
-  <img src="https://i.ibb.co/YBjzW7c/ezgif-com-crop.gif" alt="ezgif-com-crop" border="0">
+  ![Alt Text](https://i.ibb.co/YBjzW7c/ezgif-com-crop.gif)
 </p>
 
 # Next Features
