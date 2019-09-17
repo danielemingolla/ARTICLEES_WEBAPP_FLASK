@@ -14,6 +14,7 @@
 - [X] Full responsive
 
 # Requirements
+```
   Flask==1.1.1
 
 
@@ -56,7 +57,7 @@
   Faker==2.0.1
   Pillow==6.1.0
   passlib==1.7.1
-
+```
 # How to running the app
  ```
  python app.py
