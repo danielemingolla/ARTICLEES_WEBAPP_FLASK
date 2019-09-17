@@ -6,3 +6,4 @@ __pycache__/
 versions/
 credentials.txt
 Articlee_CLI.egg-info
+articleenv
