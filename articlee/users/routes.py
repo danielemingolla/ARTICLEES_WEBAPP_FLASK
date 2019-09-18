@@ -1,10 +1,9 @@
-from articlee import db, mail
+from articlee import db
 from sqlalchemy import or_
-from flask_mail import Message
-from articlee.models import Users, Articles
 from passlib.hash import sha256_crypt
+from articlee.models import Users, Articles
 from flask import render_template, flash, redirect, url_for, session, request, Blueprint
-from articlee.main.utility import RegisterForm, is_logged_in, UpdateAccountForm, save_picture
+from articlee.main.utility import RegisterForm, is_logged_in, UpdateAccountForm, save_picture, send_email
 
 
 users = Blueprint('users', __name__)
@@ -61,13 +60,8 @@ def register():
                          email=form.email.data, password=hashed_password)
             db.session.add(user)
             db.session.commit()
-            '''
-            Uncomment if you want to test the sending of registration email
-            msg = Message(
-                '%s you\'re registered to Articlee! Congratulations!' % form.username.data.upper(), recipients=[form.email.data])
-            msg.html = render_template('page/email.html', user=user)
-            mail.send(msg)
-            '''
+            send_email('%s you\'re registered to Articlee!' % form.username.data.upper(
+            ), "calisthenicsbeginner98ta@gmail.com", form.email.data.split(), render_template('page/email.html', user=user))
             flash("Congratulations, you're registered!", 'success')
     return render_template('page/register.html', form=form)
 

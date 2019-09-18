@@ -2,6 +2,8 @@ import os
 import secrets
 from PIL import Image
 from functools import wraps
+from threading import Thread
+from flask_mail import Message
 from flask_wtf import FlaskForm
 from articlee.models import Users
 from wtforms.validators import ValidationError
@@ -84,6 +86,30 @@ def save_picture(form_picture, old_photo_path):
     print(picture_path)
     i.save(picture_path, quality=100, optimize=True)
     return picture_path.replace('articlee/', '')
+
+# Sending email
+
+
+def asynchronous(f):
+    def wrapper(*args, **kwargs):
+        thr = Thread(target=f, args=args, kwargs=kwargs)
+        thr.start()
+    return wrapper
+
+
+@asynchronous
+def send_async_email(app, msg):
+    with app.app_context():
+        from articlee import mail
+        mail.send(msg)
+
+
+def send_email(subject, sender, recipients, html_body):
+    from run import app
+    msg = Message(subject, sender=sender, recipients=recipients)
+    msg.html = html_body
+    send_async_email(app, msg)
+
 
 # Only works when Debug Mode is, avoid to access to thanks page
 @utility.app_errorhandler(500)
