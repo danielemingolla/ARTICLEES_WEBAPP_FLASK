@@ -1,31 +1,22 @@
 {% extends 'layouts/base_layout.html' %}
 
 {% block css %}
-<link
-rel="stylesheet"
-type="text/css"
-href="../../static/styles/home.css"
-/>
+<link rel="stylesheet" type="text/css" href="../../static/styles/home.css" />
+<script
+  type="text/javascript"> (function () { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
 
 
 {%endblock%}
 
 {% block body %}
 <div class="d-flex flex-column justify-content-center align-items-center">
-  <img
-    class="img-fluid justify-content-center hidden-lg-down "
-    src="http://pluspng.com/img-png/feather-pen-png-black-and-white-size-512.png"
-    height="130"
-    width="130"
-    alt="LOGO"
-  />
+  <img class="img-fluid justify-content-center hidden-lg-down "
+    src="http://pluspng.com/img-png/feather-pen-png-black-and-white-size-512.png" height="130" width="130" alt="LOGO" />
   <h1 class="display-1 text-center">WELCOME TO ARTICLEES</h1>
   <blockquote class="blockquote text-center mb-0">
     <p class="mb-0">
       <i class="fa fa-quote-left fa-xs pr-2"></i>I do not agree with what you
-      have to say, but I’ll defend to the death your right to say it.<i
-        class="fas fa-quote-right fa-xs pl-2"
-      ></i>
+      have to say, but I’ll defend to the death your right to say it.<i class="fas fa-quote-right fa-xs pl-2"></i>
     </p>
     <p class="blockquote-footer text-center mb-0">
       <cite title="Source Title">Voltaire</cite>
@@ -36,11 +27,7 @@ href="../../static/styles/home.css"
   <hr class="mb-4 mt-1" />
 
   <!--Carousel Wrapper-->
-  <div
-    id="multi-item-example"
-    class="carousel slide carousel-multi-item"
-    data-ride="carousel"
-  >
+  <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
     <!--Indicators-->
     <!-- <ol class="carousel-indicators">
       <li
@@ -204,7 +191,7 @@ href="../../static/styles/home.css"
   </div>
   <!--/.Carousel Wrapper-->
 </div>
-<footer class="text-center d-none d-md-block">
+<footer class="text-center d-none d-xl-block" id="home-footer">
   <!-- Facebook -->
   <a class="fb-ic">
     <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
