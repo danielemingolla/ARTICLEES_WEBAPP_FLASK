@@ -2,8 +2,7 @@
   <a href="https://www.danielemingolla.site"><img src="https://i.ibb.co/1JXvqLz/mockuplogo.png" alt="mockuplogo" border="0"></a>
 
   # <u>ARTICLEE</u> - Web App with CRUD functionality
-   Article is a web application using the Python Flask micro-framework. It's possible to create an account and login.
-   There is a page with a list of all the articles that users are wrote and for each user there's a profile where is possible to create, edit or remove their own articles.
+Articlee is a web application using the Python Flask micro-framework that completely supports user authentication and registration. There is a page with a list of all the articles that users are wrote and for each user there's a profile where is possible to create, edit or remove their own articles. It is also possible to upload an avatar to differentiate each user, it's completely responsive and thanks to SQLAlchemy it's adaptable with a long list of different databases. It's also support payments with Stripe and it includes a fake-shop to simulate purchases.
 
   # Preview
   ![Alt Text](https://media.giphy.com/media/TfdoVc14yKl80pZyQ3/giphy.gif)
