@@ -33,3 +33,5 @@ class Config:
     MAIL_DEFAULT_SENDER = MAIL_USERNAME
     DEBUG = True
     TESTING = False
+    BABEL_DEFAULT_LOCALE = 'en'
+    BABEL_TRANSLATION_DIRECTORIES = 'C:/Users/danie/Desktop/PROJECTS/BLOG_WEBAPP_FLASK/translations'

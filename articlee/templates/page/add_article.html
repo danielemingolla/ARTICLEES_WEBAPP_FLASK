@@ -1,7 +1,7 @@
 {% extends 'layouts/base_layout.html' %} 
 
 {% block body %}
-  <h1>Add Article</h1>
+  <h1>{{_('Add Article')}}</h1>
   {% from "includes/_formhelpers.html" import render_field %}
   <form method="POST" action="">
       {{ form.hidden_tag() }}

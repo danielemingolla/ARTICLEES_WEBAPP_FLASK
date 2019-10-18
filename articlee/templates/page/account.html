@@ -10,27 +10,27 @@
         <div class="col-lg-8 order-lg-2">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a href="" data-target="#profile" data-toggle="tab" class="nav-link active profilelink">Profile</a>
+                    <a href="" data-target="#profile" data-toggle="tab" class="nav-link active profilelink">{{_('Profile')}}</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" data-target="#articles" data-toggle="tab" class="nav-link profilelink"> My Articles</a>
+                    <a href="" data-target="#articles" data-toggle="tab" class="nav-link profilelink">{{_('My Articles')}}</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" data-target="#edit" data-toggle="tab" class="nav-link profilelink">Edit</a>
+                    <a href="" data-target="#edit" data-toggle="tab" class="nav-link profilelink">{{_('Edit')}}</a>
                 </li>
             </ul>
             <div class="tab-content py-4">
                 <div class="tab-pane active" id="profile">
-                    <h5 class="mb-3">Welcome <h1 class="display-4">{{user.username}}</h1>
+                    <h5 class="mb-3">{{_('Welcome')}} <h1 class="display-4">{{user.username}}</h1>
                     </h5>
                     <footer class="blockquote-footer mb-2">Email: {{user.email}}</footer>
                     <div class="row">
                         <div class="col-md-6">
-                            <h6>About</h6>
+                            <h6>{{_('About')}}</h6>
                             <p>
-                                Web Developer, Finance, Entrepreneurship
+                                Sviluppo Web, Finanza, Imprenditorialità
                             </p>
-                            <h6>Hobbies</h6>
+                            <h6>{{_('Hobbies')}}</h6>
                             <p>
                                 Donec quis ex erat. Donec at orci et ligula consectetur varius. Integer ac facilisis
                                 orci. Integer turpis ligula, posuere at scelerisque eu. Donec at orci et ligula
@@ -45,8 +45,8 @@
                     <table class="table table-hover table-striped">
                         <tbody>
                             </tr>
-                            <th>Title</th>
-                            <th>Date</th>
+                            <th>{{_('Title')}}</th>
+                            <th>{{_('Date')}}</th>
                             <th></th>
                             <th></th>
                             </tr>
@@ -54,13 +54,13 @@
                             <tr>
                                 <td><a href="article/{{ article.id}}">{{article.title}}</a></td>
                                 <td>{{article.create_date.strftime("%m/%d/%Y %H:%M:%S")}}</td>
-                                <td><a href="edit_article/{{article.id}}" class="btn btn-warning pull-right">Edit</a>
+                                <td><a href="edit_article/{{article.id}}" class="btn btn-warning pull-right">{{_('Edit')}}</a>
                                 </td>
                                 <td>
                                     <form action="{{url_for('articlesblueprint.delete_article', id = article.id)}}"
                                         method="post">
                                         <input type="hidden" name="_method" value="DELETE">
-                                        <input type="submit" value="Delete" class="btn btn-danger">
+                                        <input type="submit" value="{{_('Delete')}}" class="btn btn-danger">
                                     </form>
                                 </td>
                             </tr>
@@ -107,7 +107,7 @@
         </div>
         <div class="col-lg-4 order-lg-1 text-center">
             <img src="{{user.image_file}}" class="mx-auto img-fluid rounded-circle d-block" alt="avatar" id="avatarpicture">
-            <a href="/add_article" class="btn btn-success by-3">Add Article</a><br>
+            <a href="/add_article" class="btn btn-success by-3">{{_('Add Article')}}</a><br>
         </div>
         <hr>
     </div>

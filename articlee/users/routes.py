@@ -60,8 +60,10 @@ def register():
                          email=form.email.data, password=hashed_password)
             db.session.add(user)
             db.session.commit()
+            '''
             send_email('%s you\'re registered to Articlee!' % form.username.data.upper(
-            ), "calisthenicsbeginner98ta@gmail.com", form.email.data.split(), render_template('page/email.html', user=user))
+            ), "calisthenicsbeginner98ta@gmail.com", form.email.data.split(), render_template('page/email.html', user=user))#
+            '''
             flash("Congratulations, you're registered!", 'success')
     return render_template('page/register.html', form=form)
 

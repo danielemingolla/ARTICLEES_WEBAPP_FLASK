@@ -8,35 +8,35 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link text-dark pr-5" href="/">HOME</a>
+        <a class="nav-link text-dark pr-5" href="/">{{_('HOME')}}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-dark pr-5" href="/articles">ARTICLES</a>
+        <a class="nav-link text-dark pr-5" href="/articles">{{_('ARTICLES')}}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-dark pr-5" href="/shop">SHOP</a>
+        <a class="nav-link text-dark pr-5" href="/shop">{{_('SHOP')}}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-dark pr-5" href="/about">ABOUT</a>
+        <a class="nav-link text-dark pr-5" href="/about">{{_('ABOUT')}}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-dark pr-5" href="/about">CONTACT US</a>
+        <a class="nav-link text-dark pr-5" href="/about">{{_('CONTACT US')}}</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
       {%if session.logged_in%}
       <li class="nav-item">
-        <a class="nav-link text-dark pr-5" href="/account">ACCOUNT</a>
+        <a class="nav-link text-dark pr-5" href="/account">{{_('ACCOUNT')}}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-dark pr-5" href="/logout">LOGOUT</a>
+        <a class="nav-link text-dark pr-5" href="/logout">{{_('LOGOUT')}}</a>
       </li>
       {%else %}
       <li class="nav-item">
-        <a class="nav-link text-dark pr-5" href="/login">LOGIN</a>
+        <a class="nav-link text-dark pr-5" href="/login">{{_('LOGIN')}}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-dark pr-5" href="/register">REGISTER</a>
+        <a class="nav-link text-dark pr-5" href="/register">{{_('REGISTER')}}</a>
       </li>
       {%endif%}
 

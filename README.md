@@ -14,6 +14,7 @@ Articlee is a web application using the Python Flask micro-framework that comple
 - [X] Accepting Payments with Stripe
 - [X] Email Support
 - [X] Full responsive
+- [X] Internationalization (i18n)
 
 # Requirements
 ```
@@ -27,6 +28,7 @@ Articlee is a web application using the Python Flask micro-framework that comple
   Flask-Mail==0.9.1
   Flask-Migrate==2.5.2
   Flask-Script==2.0.6
+  Flask-Babel==0.9
 
 
   Data and workers:
