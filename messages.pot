@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-18 23:08+0200\n"
+"POT-Creation-Date: 2019-10-27 01:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,6 +53,22 @@ msgstr ""
 msgid "REGISTER"
 msgstr ""
 
+#: articlee/templates/page/404.html:5
+msgid "Page doesn't exist!"
+msgstr ""
+
+#: articlee/templates/page/404.html:6
+msgid "Check if the URL is correct!"
+msgstr ""
+
+#: articlee/templates/page/405.html:5
+msgid "You are not allowed!"
+msgstr ""
+
+#: articlee/templates/page/405.html:6
+msgid "Don't be a fool!"
+msgstr ""
+
 #: articlee/templates/page/about.html:3
 msgid "About Us"
 msgstr ""
@@ -90,7 +106,12 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
+#: articlee/templates/page/account.html:63
+msgid "Delete"
+msgstr ""
+
 #: articlee/templates/page/account.html:110
+#: articlee/templates/page/add_article.html:4
 msgid "Add Article"
 msgstr ""
 
@@ -100,6 +121,26 @@ msgstr ""
 
 #: articlee/templates/page/article.html:4
 msgid "on"
+msgstr ""
+
+#: articlee/templates/page/email.html:114
+msgid ""
+"Hi I'm Daniele the creator of Articlee and it's a pleasure have you in "
+"our community."
+msgstr ""
+
+#: articlee/templates/page/email.html:115
+msgid ""
+"Welcome to Articlee, the community for those who love reading articles "
+"from all over the world."
+msgstr ""
+
+#: articlee/templates/page/email.html:123
+msgid "Go to Articlee"
+msgstr ""
+
+#: articlee/templates/page/email.html:131
+msgid "Good luck! I hope you enjoyed my efforts."
 msgstr ""
 
 #: articlee/templates/page/home.html:15
@@ -166,6 +207,26 @@ msgstr ""
 
 #: articlee/templates/page/shop.html:29
 msgid "MEN"
+msgstr ""
+
+#: articlee/templates/page/thanks.html:9
+msgid "YOU'VE BOUGHT"
+msgstr ""
+
+#: articlee/templates/page/thanks.html:9
+msgid "FOR JUST"
+msgstr ""
+
+#: articlee/templates/page/thanks.html:10
+msgid "We've received your order, you'll receive an email with further details."
+msgstr ""
+
+#: articlee/templates/page/thanks.html:16
+msgid "Leave a review, it will help us to improve!"
+msgstr ""
+
+#: articlee/templates/page/thanks.html:18
+msgid "GO TO THE OFFICIAL SHOP"
 msgstr ""
 
 #: articleenv/Lib/site-packages/flask_script/__init__.py:43

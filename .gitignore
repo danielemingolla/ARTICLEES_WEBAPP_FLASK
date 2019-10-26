@@ -7,3 +7,4 @@ versions/
 credentials.txt
 Articlee_CLI.egg-info
 articleenv
+*.mo

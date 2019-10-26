@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-18 23:08+0200\n"
-"PO-Revision-Date: 2019-10-18 23:08+0200\n"
+"POT-Creation-Date: 2019-10-27 01:41+0200\n"
+"PO-Revision-Date: 2019-10-27 01:41+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: it\n"
 "Language-Team: it <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: articlee/templates/includes/_navbar.html:11
 msgid "HOME"
-msgstr ""
+msgstr "HOME"
 
 #: articlee/templates/includes/_navbar.html:14
 msgid "ARTICLES"
@@ -54,122 +54,181 @@ msgstr "ACCEDI"
 msgid "REGISTER"
 msgstr "REGISTRAZIONE"
 
+#: articlee/templates/page/404.html:5
+msgid "Page doesn't exist!"
+msgstr ""
+
+#: articlee/templates/page/404.html:6
+msgid "Check if the URL is correct!"
+msgstr ""
+
+#: articlee/templates/page/405.html:5
+msgid "You are not allowed!"
+msgstr ""
+
+#: articlee/templates/page/405.html:6
+msgid "Don't be a fool!"
+msgstr ""
+
 #: articlee/templates/page/about.html:3
 msgid "About Us"
-msgstr "Chi Siamo?"
+msgstr ""
 
 #: articlee/templates/page/account.html:13
 msgid "Profile"
-msgstr "Profilo"
+msgstr ""
 
 #: articlee/templates/page/account.html:16
 msgid "My Articles"
-msgstr "I miei articoli"
+msgstr ""
 
 #: articlee/templates/page/account.html:19
 #: articlee/templates/page/account.html:57
 msgid "Edit"
-msgstr "Modifica"
+msgstr ""
 
 #: articlee/templates/page/account.html:24
 msgid "Welcome"
-msgstr "Benvenuto"
+msgstr ""
 
 #: articlee/templates/page/account.html:29
 msgid "About"
-msgstr "Chi siamo?"
+msgstr ""
 
 #: articlee/templates/page/account.html:33
 msgid "Hobbies"
-msgstr "Hobby"
+msgstr ""
 
 #: articlee/templates/page/account.html:48
 msgid "Title"
-msgstr "Titolo"
+msgstr ""
 
 #: articlee/templates/page/account.html:49
 msgid "Date"
-msgstr "Data"
+msgstr ""
+
+#: articlee/templates/page/account.html:63
+msgid "Delete"
+msgstr ""
 
 #: articlee/templates/page/account.html:110
+#: articlee/templates/page/add_article.html:4
 msgid "Add Article"
-msgstr "Aggiungi un articolo"
+msgstr ""
 
 #: articlee/templates/page/article.html:4
 msgid "Written by"
-msgstr "Scritto da"
+msgstr ""
 
 #: articlee/templates/page/article.html:4
 msgid "on"
-msgstr "il"
+msgstr ""
+
+#: articlee/templates/page/email.html:114
+msgid ""
+"Hi I'm Daniele the creator of Articlee and it's a pleasure have you in "
+"our community."
+msgstr ""
+
+#: articlee/templates/page/email.html:115
+msgid ""
+"Welcome to Articlee, the community for those who love reading articles "
+"from all over the world."
+msgstr ""
+
+#: articlee/templates/page/email.html:123
+msgid "Go to Articlee"
+msgstr ""
+
+#: articlee/templates/page/email.html:131
+msgid "Good luck! I hope you enjoyed my efforts."
+msgstr ""
 
 #: articlee/templates/page/home.html:15
 msgid "WELCOME TO ARTICLEES"
-msgstr "BENVENUTO IN ARTICLEES"
+msgstr ""
 
 #: articlee/templates/page/home.html:18
 msgid ""
 "I do not agree with what you\n"
 "      have to say, but I’ll defend to the death your right to say it."
 msgstr ""
-"Non sono d'accordo con te, ma difenderò fino alla morte la tua libertà di"
-" espressione."
 
 #: articlee/templates/page/home.html:51
 msgid "Article 1"
-msgstr "Articolo 1"
+msgstr ""
 
 #: articlee/templates/page/home.html:63 articlee/templates/page/home.html:83
 #: articlee/templates/page/home.html:103 articlee/templates/page/home.html:129
 #: articlee/templates/page/home.html:149 articlee/templates/page/home.html:169
 msgid "READ"
-msgstr "Leggi"
+msgstr ""
 
 #: articlee/templates/page/home.html:71
 msgid "Article 2"
-msgstr "Articolo 2"
+msgstr ""
 
 #: articlee/templates/page/home.html:91
 msgid "Article 3"
-msgstr "Articolo 3"
+msgstr ""
 
 #: articlee/templates/page/home.html:117
 msgid "Article 4"
-msgstr "Articolo 4"
+msgstr ""
 
 #: articlee/templates/page/home.html:137
 msgid "Article 5"
-msgstr "Articolo 5"
+msgstr ""
 
 #: articlee/templates/page/home.html:157
 msgid "Article 6"
-msgstr "Articolo 6"
+msgstr ""
 
 #: articlee/templates/page/login.html:3
 msgid "Login"
-msgstr "Accedi"
+msgstr ""
 
 #: articlee/templates/page/login.html:21
 msgid "Submit"
-msgstr "Accedi"
+msgstr ""
 
 #: articlee/templates/page/shop.html:10
 msgid "ARTICLEE SHOP"
-msgstr "NEGOZIO"
+msgstr ""
 
 #: articlee/templates/page/shop.html:16 articlee/templates/page/shop.html:42
 msgid "WOMEN"
-msgstr "DONNA"
+msgstr ""
 
 #: articlee/templates/page/shop.html:22 articlee/templates/page/shop.html:35
 #: articlee/templates/page/shop.html:48 articlee/templates/page/shop.html:58
 #: articlee/templates/page/shop.html:65 articlee/templates/page/shop.html:72
 msgid "BUY NOW"
-msgstr "COMPRA ORA"
+msgstr ""
 
 #: articlee/templates/page/shop.html:29
 msgid "MEN"
-msgstr "UOMO"
+msgstr ""
+
+#: articlee/templates/page/thanks.html:9
+msgid "YOU'VE BOUGHT"
+msgstr ""
+
+#: articlee/templates/page/thanks.html:9
+msgid "FOR JUST"
+msgstr ""
+
+#: articlee/templates/page/thanks.html:10
+msgid "We've received your order, you'll receive an email with further details."
+msgstr ""
+
+#: articlee/templates/page/thanks.html:16
+msgid "Leave a review, it will help us to improve!"
+msgstr ""
+
+#: articlee/templates/page/thanks.html:18
+msgid "GO TO THE OFFICIAL SHOP"
+msgstr ""
 
 #: articleenv/Lib/site-packages/flask_script/__init__.py:43
 msgid "show this help message and exit"
@@ -179,15 +238,15 @@ msgstr ""
 #: articleenv/Lib/site-packages/wtforms/validators.py:205
 #: articleenv/Lib/site-packages/wtforms/validators.py:245
 msgid "This field is required."
-msgstr "Questo campo è richiesto."
+msgstr ""
 
 #: articleenv/Lib/site-packages/flask_wtf/file.py:85
 msgid "File does not have an approved extension: {extensions}"
-msgstr "L'estensione del file non è supportata."
+msgstr ""
 
 #: articleenv/Lib/site-packages/flask_wtf/file.py:90
 msgid "File does not have an approved extension."
-msgstr "L'estensione del file non è supportata."
+msgstr ""
 
 #: articleenv/Lib/site-packages/passlib/ext/django/utils.py:957
 msgid "algorithm"
@@ -195,13 +254,13 @@ msgstr ""
 
 #: articleenv/Lib/site-packages/wtforms/validators.py:58
 #, python-format
-msgid "Invalid field name '%s'." 
+msgid "Invalid field name '%s'."
 msgstr ""
 
 #: articleenv/Lib/site-packages/wtforms/validators.py:66
 #, python-format
 msgid "Field must be equal to %(other_name)s."
-msgstr "Le due password non corrispondono."
+msgstr ""
 
 #: articleenv/Lib/site-packages/wtforms/validators.py:99
 #, python-format
@@ -214,8 +273,8 @@ msgstr[1] ""
 #, python-format
 msgid "Field cannot be longer than %(max)d character."
 msgid_plural "Field cannot be longer than %(max)d characters."
-msgstr[0] "Il campo non può contenere più di %(max)d caratteri."
-msgstr[1] "Il campo non può essere più lungo di %(max)d caratteri."
+msgstr[0] ""
+msgstr[1] ""
 
 #: articleenv/Lib/site-packages/wtforms/validators.py:105
 #, python-format
@@ -239,15 +298,15 @@ msgstr ""
 
 #: articleenv/Lib/site-packages/wtforms/validators.py:277
 msgid "Invalid input."
-msgstr "Valore non valido."
+msgstr ""
 
 #: articleenv/Lib/site-packages/wtforms/validators.py:311
 msgid "Invalid email address."
-msgstr "Email non valida."
+msgstr ""
 
 #: articleenv/Lib/site-packages/wtforms/validators.py:352
 msgid "Invalid IP address."
-msgstr "Ip non valido."
+msgstr ""
 
 #: articleenv/Lib/site-packages/wtforms/validators.py:403
 msgid "Invalid Mac address."
@@ -347,13 +406,13 @@ msgstr ""
 
 #: articleenv/Lib/site-packages/wtforms/fields/core.py:745
 msgid "Not a valid datetime value"
-msgstr "Data non valida"
+msgstr ""
 
 #: articleenv/Lib/site-packages/wtforms/fields/core.py:762
 msgid "Not a valid date value"
-msgstr "Data non valida"
+msgstr ""
 
 #: articleenv/Lib/site-packages/wtforms/fields/core.py:779
 msgid "Not a valid time value"
-msgstr "Ora non valida"
+msgstr ""
 
