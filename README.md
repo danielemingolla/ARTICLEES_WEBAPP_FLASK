@@ -66,7 +66,7 @@ Articlee is a web application using the Python Flask micro-framework that comple
   Utilities:
 
   Faker==2.0.1
-  Pillow==6.1.0
+  Pillow==6.2.0
   passlib==1.7.1
 ```
 # How to running the app
