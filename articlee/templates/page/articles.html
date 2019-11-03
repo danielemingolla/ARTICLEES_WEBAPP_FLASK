@@ -6,9 +6,19 @@
 {%endblock%}
 
 {% block body %}
+{%if articles.pages == 0%}
+<div class="jumbotron text-center my-2">
+  <h1 class="display-3">{{_('At the moment there are no articles!')}}</h1>
+  <h1 class="display-4 text-secondary">{{_('Be the first!')}}</p>
+    <hr class="my-4">
+    <p class="lead mt-5">
+      <a class="btn btn-outline-dark" href="/" role="button">HOME</a>
+    </p>
+</div>
+{%else%}
 <h1>Articles</h1>
 <div class="row">
-  {% for article in articles%}
+  {% for article in articles.items%}
   <div class="col-md-3 d-flex justify-content-center">
     <div class="card mb-3" style="width: 18rem; height: 25rem;">
       <div class="card-body d-flex flex-column">
@@ -24,6 +34,30 @@
   </div>
   {%endfor%}
 </div>
+<div class="row">
+  <div class="col-12 text-center">
+      <ul class="pagination justify-content-center">
+        {%for page in articles.iter_pages(left_edge=3)%}
+        {%if page%}
+        {%if page != articles.page%}
+        <li class="page-item"><a class="page-link"
+            href="{{url_for('articlesblueprint.articles',page_num=page)}}">{{page}}</a>
+        </li>
+        {%else%}
+        <li class="page-item active"><a class="page-link"
+            href="{{url_for('articlesblueprint.articles',page_num=page)}}">{{page}}</a>
+        </li>
+        {%endif%}
+        {% else %}
+        <li class="page-item">
+          <a class="page-link text-secondary">...</a>
+        </li>
+        {%endif%}
+        {%endfor%}
+      </ul>
+  </div>
+</div>
+{%endif%}
 {%endblock%}
 
 

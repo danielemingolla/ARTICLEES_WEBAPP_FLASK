@@ -30,8 +30,6 @@ def cli(articles, count, path):
             for deleteArticle in deletedListArticles:
                 db.session.delete(deleteArticle)
         else:
-            # Reset AUTO_INCREMENT of ID Column to zero
-            db.session.execute('TRUNCATE Articles')
             Articles.query.delete()
     else:
         deletedListUsers = Users.query.order_by(
@@ -52,7 +50,7 @@ def cli(articles, count, path):
                     except:
                         pass
                     # Reset AUTO_INCREMENT of ID Column to zero
-                db.session.delete(deleteUser)
+            Users.query.delete()
     db.session.commit()
     click.echo("I've finish. Rows deleted: {}".format(
         count if count != 9999 else "ALL"))

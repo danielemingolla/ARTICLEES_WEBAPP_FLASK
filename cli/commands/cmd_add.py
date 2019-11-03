@@ -35,8 +35,7 @@ def cli(p_articles, count, path):
             fake_title = random_title.pop()
             # Scelto di un username random tra quelli degli utenti registrati
             random_author = random.choice(Users.query.all()).username
-            fake_body = fake.paragraph(
-                nb_sentences=20, variable_nb_sentences=True, ext_word_list=None)
+            fake_body = fake.text(max_nb_chars=999, ext_word_list=None)
             article = Articles(
                 title=fake_title, author=random_author, body=fake_body)
             with app.app_context():

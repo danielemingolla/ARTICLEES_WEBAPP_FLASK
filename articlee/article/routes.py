@@ -17,14 +17,11 @@ class ArticleForm(FlaskForm):
     body = TextAreaField('Body', validators=[DataRequired(), Length(min=30)])
 
 # Lista articoli
-@articlesblueprint.route('/articles')
-def articles():
-    articles = Articles.query.all()
-    if articles:
-        return render_template('page/articles.html', articles=articles)
-    else:
-        msg = 'No articles found!'
-        return render_template('page/articles.html', msg=msg)
+@articlesblueprint.route('/articles/<int:page_num>')
+def articles(page_num):
+    articles = Articles.query.paginate(
+        per_page=8, page=page_num, error_out=True)
+    return render_template('page/articles.html', articles=articles)
 
 
 # Single article

@@ -33,7 +33,7 @@ class Articles(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     author = db.Column(db.String(25), db.ForeignKey(
         'users.username', onupdate="CASCADE", ondelete="CASCADE"), nullable=False)
-    title = db.Column(db.String(30), nullable=False)
+    title = db.Column(db.String(50), nullable=False)
     body = db.Column(db.String(1000), nullable=False)
     create_date = db.Column(db.DateTime, default=datetime.datetime.now)
 
