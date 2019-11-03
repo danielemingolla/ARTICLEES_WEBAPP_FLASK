@@ -5,6 +5,7 @@ If there're edits in one of the table, commands for migration
 1) PROJECTS\BLOG_WEBAPP_FLASK>python migrate.py db init --> only first time
 2) python migrate.py db migrate --> detect edits
 3) python migrate.py db upgrade --> apply new changes
+4) python migrate.py db upgrade head --> apply new head to avoid errors with migration
 
 Further information: https://alembic.sqlalchemy.org/en/latest/
 '''

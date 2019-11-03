@@ -14,21 +14,16 @@ users = Blueprint('users', __name__)
 @is_logged_in  # per accedere alla dashboard verifico che l'utente sia loggato
 def account():
     form = UpdateAccountForm()
-
     if form.validate_on_submit():
         user = Users.query.filter(
             Users.username == session['username']).first()
-        articles = Articles.query.filter(
-            Articles.author == session['username']).all()
         if form.picture.data:
             picture_file = save_picture(form.picture.data, user.image_file)
             user.image_file = picture_file
-        for article in articles:
-            article.author = form.username.data
         user.username = form.username.data
         user.email = form.email.data
         session['username'] = form.username.data
-        db.session.add(user, articles)
+        db.session.add(user)
         db.session.commit()
         flash('Your account has been updated!', 'success')
         return redirect(url_for('users.account'))

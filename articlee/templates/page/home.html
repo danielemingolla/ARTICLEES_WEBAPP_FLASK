@@ -4,8 +4,6 @@
 <link rel="stylesheet" type="text/css" href="../../static/styles/home.css" />
 <script
   type="text/javascript"> (function () { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
-
-
 {%endblock%}
 
 {% block body %}
@@ -41,154 +39,55 @@
     <!--/.Indicators-->
 
     <!--Slides-->
+    {% if latest_articles %}
     <div class="carousel-inner" role="listbox">
       <!--First slide-->
       <div class="carousel-item active">
         <div class="row">
-          <div class="col-md-4">
+          {% for article in latest_articles[0:3] %}
+          <div class="col-sm clearfix">
             <div class="card mb-2">
               <div class="card-body d-flex flex-column" style="height: 27.5em;">
-                <h4 class="card-title">{{_('Article 1')}}</h4>
-                <p class="card-text">
-                  Etiam ut libero dapibus, viverra lacus eget, feugiat est. In
-                  ultrices libero ac ex tempus fringilla. Nunc ac ipsum
-                  tristique, ornare metus sed, imperdiet lectus. Etiam hendrerit
-                  ligula quis ligula sodales mollis. Aliquam porta, velit et
-                  rhoncus dictum, leo metus porta ex, ut aliquam lacus turpissit
-                  amet dui. Nullam eget finibus diam. Cras scelerisque arcuet
-                  gravida feugiat. Quisque efficitur augue et ligula laoreet
-                  condimentum. Maecenas non iaculis arcu, at tempor quam. Donec
-                  id viverra leo. Aenean varius posuere ultrices. Quisque
+                <a href="/article/{{article.id}}">
+                  <h4 class="card-title">{{_(article.title)}}</h4>
+                </a>
+                <p class="card-text" style="text-align: justify">
+                  {{_(article.body)}}
                 </p>
-                <a class="btn btn-dark text-white mt-auto">{{_('READ')}}</a>
+                <a class="mt-auto btn btn-dark text-white" href="/article/{{article.id}}">{{_('READ')}}</a>
               </div>
             </div>
           </div>
-
-          <div class="col-md-4 clearfix d-none d-md-block">
-            <div class="card mb-2">
-              <div class="card-body d-flex flex-column" style="height: 27.5em;">
-                <h4 class="card-title">{{_('Article 2')}}</h4>
-                <p class="card-text">
-                  Phasellus placerat efficitur rutrum. Curabitur sodales urna
-                  sit amet enim congue, id pharetra nunc tincidunt. Morbi
-                  convallis ultrices rhoncus. Nam fringilla nec elit nec
-                  accumsan. Pellentesque pellentesque tellus in interdum
-                  consectetur. Fusce sit amet risus vestibulum, egestas mauris
-                  id, consectetur odio. Nulla facilisi. In sit amet neque nec
-                  mauris mollis eleifend. Nulla molestie, mi sit amet ullam
-                  egestas mauris id, consectetur odio. consectetur odio. Nulla
-                  facilisi. In sit amet neque nec mauris mollis.
-                </p>
-                <a class="btn btn-dark text-white mt-auto">{{_('READ')}}</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 clearfix d-none d-md-block">
-            <div class="card mb-2">
-              <div class="card-body d-flex flex-column" style="height: 27.5em;">
-                <h4 class="card-title">{{_('Article 3')}}</h4>
-                <p class="card-text">
-                  Sed accumsan ut est in pretium. Etiam eu purus quam. Morbi nec
-                  volutpat nibh. Donec lacinia dolor turpis. Nullam molestie
-                  porttitor velit ut pretium. Pellentesque auctor sapien vitae
-                  ligula rutrum consectetur. Duis vestibulum ut erat et viverra.
-                  Nulla lectus ipsum, auctor ornare nisl at, efficitur finibus
-                  arcu. Aliquam aliquet tellus ut quam condimentum, ut convallis
-                  nisl molestie. Vestibulum vitae lorem sagittis, cursus risus
-                  a, pellentesque erat. Donec sodales ligula convallis, aliquam
-                  neque vel, dictum elit.
-                </p>
-                <a class="btn btn-dark text-white mt-auto">{{_('READ')}}</a>
-              </div>
-            </div>
-          </div>
+          {%endfor%}
         </div>
       </div>
       <!--/.First slide-->
-
       <!--Second slide-->
+      {% if latest_articles|length > 3 %}
       <div class="carousel-item">
         <div class="row">
-          <div class="col-md-4">
+          {% for article in latest_articles[3:] %}
+          <div class="col-sm clearfix">
             <div class="card mb-2">
-              <div class="card-body" style="height: 27.5em;">
-                <h4 class="card-title d-flex flex-column">{{_('Article 4')}}</h4>
-                <p class="card-text">
-                  Sed accumsan ut est in pretium. Etiam eu purus quam. Morbi nec
-                  volutpat nibh. Donec lacinia dolor turpis. Nullam molestie
-                  porttitor velit ut pretium. Pellentesque auctor sapien vitae
-                  ligula rutrum consectetur. Duis vestibulum ut erat et viverra.
-                  Nulla lectus ipsum, auctor ornare nisl at, efficitur finibus
-                  arcu. Aliquam aliquet tellus ut quam condimentum, ut convallis
-                  nisl molestie. Vestibulum vitae lorem sagittis, cursus risus
-                  a, pellentesque erat. Donec sodales ligula convallis, aliquam
-                  neque vel, dictum elit.
+              <div class="card-body d-flex flex-column" style="height: 27.5em;">
+                <a href="/article/{{article.id}}">
+                  <h4 class="card-title">{{_(article.title)}}</h4>
+                </a>
+                <p class="card-text" style="text-align: justify">
+                  {{_(article.body)}}
                 </p>
-                <a class="btn btn-dark text-white mt-auto">{{_('READ')}}</a>
+                <a class="mt-auto btn btn-dark text-white" href="/article/{{article.id}}">{{_('READ')}}</a>
               </div>
             </div>
           </div>
-
-          <div class="col-md-4 clearfix d-none d-md-block">
-            <div class="card mb-2">
-              <div class="card-body" style="height: 27.5em;">
-                <h4 class="card-title d-flex flex-column">{{_('Article 5')}}</h4>
-                <p class="card-text">
-                  Sed accumsan ut est in pretium. Etiam eu purus quam. Morbi nec
-                  volutpat nibh. Donec lacinia dolor turpis. Nullam molestie
-                  porttitor velit ut pretium. Pellentesque auctor sapien vitae
-                  ligula rutrum consectetur. Duis vestibulum ut erat et viverra.
-                  Nulla lectus ipsum, auctor ornare nisl at, efficitur finibus
-                  arcu. Aliquam aliquet tellus ut quam condimentum, ut convallis
-                  nisl molestie. Vestibulum vitae lorem sagittis, cursus risus
-                  a, pellentesque erat. Donec sodales ligula convallis, aliquam
-                  neque vel, dictum elit.
-                </p>
-                <a class="btn btn-dark text-white mt-auto">{{_('READ')}}</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 clearfix d-none d-md-block">
-            <div class="card mb-2">
-              <div class="card-body" style="height: 27.5em;">
-                <h4 class="card-title d-flex flex-column">{{_('Article 6')}}</h4>
-                <p class="card-text">
-                  Sed accumsan ut est in pretium. Etiam eu purus quam. Morbi nec
-                  volutpat nibh. Donec lacinia dolor turpis. Nullam molestie
-                  porttitor velit ut pretium. Pellentesque auctor sapien vitae
-                  ligula rutrum consectetur. Duis vestibulum ut erat et viverra.
-                  Nulla lectus ipsum, auctor ornare nisl at, efficitur finibus
-                  arcu. Aliquam aliquet tellus ut quam condimentum, ut convallis
-                  nisl molestie. Vestibulum vitae lorem sagittis, cursus risus
-                  a, pellentesque erat. Donec sodales ligula convallis, aliquam
-                  neque vel, dictum elit.
-                </p>
-                <a class="btn btn-dark text-white mt-auto">{{_('READ')}}</a>
-              </div>
-            </div>
-          </div>
+          {% endfor %}
         </div>
       </div>
-      <!--/.Second slide-->
+      {% endif %}
     </div>
-    <!--/.Slides-->
-    <!--Controls-->
-    <!--
-<div class="controls-top">
-      <a class="btn-floating" href="#multi-item-example" data-slide="prev"
-        ><i class="fa fa-chevron-left"></i
-      ></a>
-      <a class="btn-floating" href="#multi-item-example" data-slide="next"
-        ><i class="fa fa-chevron-right"></i
-      ></a>
-    </div>
-
-   -->
-    <!--/.Controls-->
+    <!--/.Second slide-->
   </div>
+  {% endif %}
   <!--/.Carousel Wrapper-->
 </div>
 <footer class="text-center d-none d-xl-block" id="home-footer">
@@ -224,4 +123,8 @@
   <!-- Copyright -->
 </footer>
 
+{%endblock%}
+
+{%block script%}
+<script src="../../static/scripts/main.js"></script>
 {%endblock%}

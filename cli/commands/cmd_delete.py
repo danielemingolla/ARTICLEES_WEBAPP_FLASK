@@ -26,7 +26,6 @@ def cli(articles, count, path):
         deletedListArticles = Articles.query.order_by(
             Articles.create_date.desc()).limit(count).all()
         if count != 9999:
-            count = len(deletedListArticles)
             print('ARTICOLI ELIMINATI: \n {}'.format(deletedListArticles))
             for deleteArticle in deletedListArticles:
                 db.session.delete(deleteArticle)
@@ -48,9 +47,12 @@ def cli(articles, count, path):
             deletedListUsers = Users.query.all()
             for deleteUser in deletedListUsers:
                 if 'default.png' not in deleteUser.image_file.split('/'):
-                    os.remove('articlee/'+deleteUser.image_file)
-            # Reset AUTO_INCREMENT of ID Column to zero
-            db.session.execute('TRUNCATE Users')
+                    try:
+                        os.remove('articlee/'+deleteUser.image_file)
+                    except:
+                        pass
+                    # Reset AUTO_INCREMENT of ID Column to zero
+                db.session.delete(deleteUser)
     db.session.commit()
     click.echo("I've finish. Rows deleted: {}".format(
         count if count != 9999 else "ALL"))

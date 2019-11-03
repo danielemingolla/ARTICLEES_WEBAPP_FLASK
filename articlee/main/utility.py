@@ -6,6 +6,7 @@ from threading import Thread
 from flask_mail import Message
 from flask_wtf import FlaskForm
 from articlee.models import Users
+from wtforms.widgets import TextArea
 from wtforms.validators import ValidationError
 from flask_wtf.file import FileField, FileAllowed
 from wtforms import SubmitField, PasswordField,  StringField
@@ -22,6 +23,8 @@ class UpdateAccountForm(FlaskForm):
                            validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
+    description = StringField('Description', validators=[
+                              DataRequired(), Length(min=10, max=160)], widget=TextArea())
     picture = FileField('Update Profile Picture', validators=[
                         FileAllowed(['jpg', 'png'])])
     submit = SubmitField('Update')
@@ -83,7 +86,6 @@ def save_picture(form_picture, old_photo_path):
     output_size = (200, 200)
     i = Image.open(form_picture)
     i.thumbnail(output_size)
-    print(picture_path)
     i.save(picture_path, quality=100, optimize=True)
     return picture_path.replace('articlee/', '')
 

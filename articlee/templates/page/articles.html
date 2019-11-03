@@ -1,11 +1,32 @@
-{% extends 'layouts/base_layout.html' %} 
+{% extends 'layouts/base_layout.html' %}
+
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="../../static/styles/articles.css" />
+{%endblock%}
+
 {% block body %}
 <h1>Articles</h1>
-<ul class="list-group">
+<div class="row">
   {% for article in articles%}
-  <li class="list-group-item">
-    <a href="article/{{ article.id}}">{{ article.title }}</a>
-  </li>
+  <div class="col-md-3 d-flex justify-content-center">
+    <div class="card mb-3" style="width: 18rem; height: 25rem;">
+      <div class="card-body d-flex flex-column">
+        <a href="/article/{{article.id}}">
+          <h5 class="card-title d-flex flex-column">{{_(article.title)}}</h5>
+        </a>
+        <small class="text-secondary">Written by {{_(article.author)}} -
+          {{article.create_date.strftime("%m/%d/%Y")}}</small>
+        <p class="card-text" style="text-align: justify">{{article.body}}</p>
+        <a class="mt-auto btn btn-dark text-white" href="/article/{{article.id}}">{{_('READ')}}</a>
+      </div>
+    </div>
+  </div>
   {%endfor%}
-</ul>
+</div>
+{%endblock%}
+
+
+{%block script%}
+<script src="../../static/scripts/articles.js"></script>
 {%endblock%}

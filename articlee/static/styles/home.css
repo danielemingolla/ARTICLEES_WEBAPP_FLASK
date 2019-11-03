@@ -13,6 +13,10 @@ h1 {
   font-size: 4.5rem !important;
 }
 
+a .card-title {
+  color: black;
+}
+
 /*HOME*/
 
 .d-flex img {

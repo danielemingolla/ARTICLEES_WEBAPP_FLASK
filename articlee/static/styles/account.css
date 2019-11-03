@@ -1,3 +1,8 @@
+body {
+  background: url("http://static.hdw.eweb4.com/media/wallpapers_dl/1/67/667476-writer.jpg");
+  background-size: cover;
+}
+
 /*NAVBAR*/
 
 .navbar {
@@ -18,17 +23,18 @@
   box-shadow: none !important;
 }
 
-
 /*PROFILE SECTION*/
-.display-4{
+
+.display-4 {
   font-size: 3rem !important;
 }
 
-.profilelink{
+.profilelink {
   color: black;
   font-size: 15px;
 }
-#avatarpicture{
+
+#avatarpicture {
   margin-bottom: 15px;
   width: 200px;
   height: 200px;
