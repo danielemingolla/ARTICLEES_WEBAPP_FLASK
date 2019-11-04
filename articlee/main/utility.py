@@ -27,7 +27,7 @@ class UpdateAccountForm(FlaskForm):
                               DataRequired(), Length(min=10, max=160)], widget=TextArea())
     picture = FileField('Update Profile Picture', validators=[
                         FileAllowed(['jpg', 'png'])])
-    submit = SubmitField('Update')
+    submit = SubmitField('INVIA')
 
     def validate_username(self, username):
         if username.data != session['username']:

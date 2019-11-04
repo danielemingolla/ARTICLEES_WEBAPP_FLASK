@@ -10,10 +10,12 @@
         <div class="col-lg-8 order-lg-2">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a href="" data-target="#profile" data-toggle="tab" class="nav-link active profilelink">{{_('Profile')}}</a>
+                    <a href="" data-target="#profile" data-toggle="tab"
+                        class="nav-link active profilelink">{{_('Profile')}}</a>
                 </li>
                 <li class="nav-item">
-                    <a href="" data-target="#articles" data-toggle="tab" class="nav-link profilelink">{{_('My Articles')}}</a>
+                    <a href="" data-target="#articles" data-toggle="tab"
+                        class="nav-link profilelink">{{_('My Articles')}}</a>
                 </li>
                 <li class="nav-item">
                     <a href="" data-target="#edit" data-toggle="tab" class="nav-link profilelink">{{_('Edit')}}</a>
@@ -26,11 +28,7 @@
                     <footer class="blockquote-footer mb-2">Email: {{user.email}}</footer>
                     <div class="row">
                         <div class="col-md-6">
-                            <h6>{{_('About')}}</h6>
-                            <p>
-                                Sviluppo Web, Finanza, Imprenditorialità
-                            </p>
-                            <h6>{{_('Hobbies')}}</h6>
+                            <h6>{{_('About Me')}}</h6>
                             <p>
                                 {{user.description}}
                             </p>
@@ -39,25 +37,29 @@
                     <!--/row-->
                 </div>
                 <div class="tab-pane" id="articles">
-                    <table class="table table-hover table-striped">
+                    <table class="table table-hover">
+                        <thead class="thead-dark">
+                            </tr>
+                            <th>{{_('TITOLO')}}</th>
+                            <th>{{_('DATA')}}</th>
+                            <th></th>
+                            <th></th>
+                            </tr>
+                        </thead>
                         <tbody>
-                            </tr>
-                            <th>{{_('Title')}}</th>
-                            <th>{{_('Date')}}</th>
-                            <th></th>
-                            <th></th>
-                            </tr>
                             {%for article in articles%}
                             <tr>
                                 <td><a href="article/{{ article.id}}">{{article.title}}</a></td>
                                 <td>{{article.create_date.strftime("%m/%d/%Y %H:%M:%S")}}</td>
-                                <td><a href="edit_article/{{article.id}}" class="btn btn-warning pull-right">{{_('Edit')}}</a>
+                                <td><a href="edit_article/{{article.id}}"
+                                        class="btn btn-dark text-white pull-right">{{_('Edit')}}</a>
                                 </td>
                                 <td>
                                     <form action="{{url_for('articlesblueprint.delete_article', id = article.id)}}"
                                         method="post">
                                         <input type="hidden" name="_method" value="DELETE">
-                                        <input type="submit" value="{{_('Delete')}}" class="btn btn-danger">
+                                        <input type="submit" value="{{_('Delete')}}"
+                                            class="btn btn-outline-dark dlt-button">
                                     </form>
                                 </td>
                             </tr>
@@ -84,6 +86,11 @@
                             <label class="col-lg-3 col-form-label form-control-label">Description</label>
                             <div class="col-lg-6">
                                 {{form.description(class_="form-control")}}
+                                {% if form.description.errors %}
+                                {% for error in form.description.errors %}
+                                <span class="text-danger">{{ error }}</span></br>
+                                {% endfor %}
+                                {% endif %}
                             </div>
                         </div>
                         <div class="form-group row">
@@ -99,7 +106,7 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-9">
-                                {{form.submit(class_="btn btn-primary")}}
+                                {{form.submit(class_="btn btn-secondary")}}
                                 {{ form.hidden_tag() }}
                                 <!--Risolve il problema con il CSRF token-->
                             </div>
@@ -109,8 +116,9 @@
             </div>
         </div>
         <div class="col-lg-4 order-lg-1 text-center">
-            <img src="{{user.image_file}}" class="mx-auto img-fluid rounded-circle d-block" alt="avatar" id="avatarpicture">
-            <a href="/add_article" class="btn btn-success by-3">{{_('Add Article')}}</a><br>
+            <img src="{{user.image_file}}" class="mx-auto img-fluid rounded-circle d-block" alt="avatar"
+                id="avatarpicture">
+            <a href="/add_article" class="btn btn-outline-success by-3">{{_('SCRIVI')}}</a><br>
         </div>
         <hr>
     </div>

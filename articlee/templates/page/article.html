@@ -1,7 +1,8 @@
-{% extends 'layouts/base_layout.html' %} 
+{% extends 'layouts/base_layout.html' %}
 {%block body%}
-<h1>{{ article.title }}</h1>
-<small>{{_('Written by')}} {{ article.author}} {{_('on')}} {{ article.create_date.strftime("%m/%d/%Y %H:%M:%S") }}</small>
+<h1 class="display-4">{{ article.title }}</h1>
+<small>{{_('Written by')}} {{ article.author}} {{_('on')}}
+    {{ article.create_date.strftime("%m/%d/%Y %H:%M:%S") }}</small>
 <hr>
 <div>{{article.body| safe}}</div>
 {%endblock%}

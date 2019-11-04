@@ -20,18 +20,21 @@ def account():
         if form.picture.data:
             picture_file = save_picture(form.picture.data, user.image_file)
             user.image_file = picture_file
+        session['username'] = form.username.data
         user.username = form.username.data
         user.email = form.email.data
-        session['username'] = form.username.data
+        user.description = form.description.data
         db.session.add(user)
         db.session.commit()
         flash('Your account has been updated!', 'success')
         return redirect(url_for('users.account'))
     elif request.method == 'GET':
         # campi compilati con i dati attuali prima dell'eventuale modifica
-        form.username.data = session['username']
-        form.email.data = Users.query.filter(
-            Users.username == session['username']).first().email
+        user = Users.query.filter(
+            Users.username == session['username']).first()
+        form.username.data = user.username
+        form.email.data = user.email
+        form.description.data = user.description
     user = Users.query.filter(
         Users.username == session['username']).first()
     articles = Articles.query.filter(
@@ -51,8 +54,8 @@ def register():
             flash("Change your email or username", 'danger')
         else:
             hashed_password = sha256_crypt.hash(str(form.password.data))
-            user = Users(name=form.name.data, username=form.username.data,
-                         email=form.email.data, password=hashed_password)
+            user = Users(name=form.name.data.replace(" ", ""), username=form.username.data.replace(" ", ""),
+                         email=form.email.data.replace(" ", ""), password=hashed_password)
             db.session.add(user)
             db.session.commit()
             '''
@@ -71,12 +74,14 @@ def login():
         return redirect(url_for('users.account'))
     if request.method == 'POST':
         # Get Form Fields
-        username_candidate = request.form['username']
-        password_candidate = request.form['password']
+        username_candidate = request.form['username'].replace(" ", "")
+        password_candidate = request.form['password'].replace(" ", "")
         user = Users.query.filter_by(username=username_candidate).first()
         if user and sha256_crypt.verify(password_candidate, user.password):
             session['logged_in'] = True
             session['username'] = username_candidate
+            session['email'] = user.email
+            session['description'] = user.description
             flash('You are now logged in', 'success')
             return redirect(url_for('users.account'))
         else:

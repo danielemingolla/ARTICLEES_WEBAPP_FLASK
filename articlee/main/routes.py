@@ -1,3 +1,4 @@
+import lxml.html
 from articlee.models import Articles
 from flask import Blueprint, render_template
 
@@ -6,7 +7,10 @@ mainroutes = Blueprint('mainroutes', __name__)
 # Index
 @mainroutes.route('/')
 def index():
-    latest_articles=Articles.query.order_by(Articles.id.desc()).all()[:6]
+    latest_articles = Articles.query.order_by(Articles.id.desc()).all()[:6]
+    print(latest_articles)
+    for article in latest_articles:
+        article.body= lxml.html.fromstring(article.body).text_content()
     return render_template("page/home.html", latest_articles=latest_articles)
 
 # About

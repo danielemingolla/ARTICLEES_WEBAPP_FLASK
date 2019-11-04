@@ -1,3 +1,4 @@
+import lxml.html
 from articlee import db
 from flask_wtf import FlaskForm
 from articlee.models import Articles
@@ -13,14 +14,16 @@ articlesblueprint = Blueprint('articlesblueprint', __name__)
 
 class ArticleForm(FlaskForm):
     title = StringField('Title', validators=[
-                        DataRequired(), Length(min=5, max=30)])
-    body = TextAreaField('Body', validators=[DataRequired(), Length(min=30)])
+                        DataRequired(), Length(min=5, max=50)])
+    body = TextAreaField('Body', validators=[DataRequired(), Length(min=100)])
 
 # Lista articoli
 @articlesblueprint.route('/articles/<int:page_num>')
 def articles(page_num):
     articles = Articles.query.paginate(
         per_page=8, page=page_num, error_out=True)
+    for article in articles.items:
+        article.body = lxml.html.fromstring(article.body).text_content()
     return render_template('page/articles.html', articles=articles)
 
 
