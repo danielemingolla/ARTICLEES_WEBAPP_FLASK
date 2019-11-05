@@ -20,16 +20,22 @@ def account():
         if form.picture.data:
             picture_file = save_picture(form.picture.data, user.image_file)
             user.image_file = picture_file
-        session['username'] = form.username.data
-        user.username = form.username.data
-        user.email = form.email.data
-        user.description = form.description.data
-        db.session.add(user)
-        db.session.commit()
-        flash('Your account has been updated!', 'success')
-        return redirect(url_for('users.account'))
+        usernameCanditato = form.username.data.replace(" ", "")
+        if Users.query.filter(
+                Users.username == form.username.data.replace(" ", "")).first() and usernameCanditato != session['username']:
+            flash('Your username already exists!', 'danger')
+            return redirect(url_for('users.account'))
+        else:
+            session['username'] = form.username.data.replace(" ", "")
+            user.username = form.username.data.replace(" ", "")
+            user.email = form.email.data.replace(" ", "")
+            user.description = form.description.data
+            db.session.add(user)
+            db.session.commit()
+            flash('Your account has been updated!', 'success')
+            return redirect(url_for('users.account'))
     elif request.method == 'GET':
-        # campi compilati con i dati attuali prima dell'eventuale modifica
+        # campi compilati con i dati attuali prima dell'eventuale modific
         user = Users.query.filter(
             Users.username == session['username']).first()
         form.username.data = user.username

@@ -74,12 +74,22 @@
                             <label class="col-lg-3 col-form-label form-control-label">Email</label>
                             <div class="col-lg-6">
                                 {{form.email(class_="form-control")}}
+                                {% if form.email.errors %}
+                                {% for error in form.email.errors %}
+                                <span class="text-danger">{{ error }}</span></br>
+                                {% endfor %}
+                                {% endif %}
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Username</label>
                             <div class="col-lg-6">
                                 {{form.username(class_="form-control")}}
+                                {% if form.username.errors %}
+                                {% for error in form.username.errors %}
+                                <span class="text-danger">{{ error }}</span></br>
+                                {% endfor %}
+                                {% endif %}
                             </div>
                         </div>
                         <div class="form-group row">
