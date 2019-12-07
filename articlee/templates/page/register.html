@@ -5,33 +5,43 @@
 {%endblock%}
 
 {% block body %}
-<h1>Register</h1>
+<div class="row justify-content-center">
+    <div class="col-12 text-center">
+        <img class="img-fluid justify-content-center hidden-lg-down " src="https://i.ibb.co/s9ZLfx8/registrazione.png"
+            width="300" height="93" alt="LOGO" />
+    </div>
+</div>
 {% from "includes/_formhelpers.html" import render_field%}
 <form method='POST' action="">
     {{ form.hidden_tag() }}
-    <div class="row mb-2">
-        <div class="col">
+    <div class="row justify-content-center mt-2">
+        <div class="col-md-3">
             {{render_field(form.name, class_="form-control")}}
         </div>
-        <div class="col">
+    </div>
+    <div class="row justify-content-center mt-2">
+        <div class="col-md-3">
             {{render_field(form.username, class_="form-control")}}
         </div>
     </div>
-    <div class="row mb-2">
-        <div class="col">
+    <div class="row justify-content-center mt-2">
+        <div class="col-md-3">
             {{render_field(form.password, class_="form-control")}}
         </div>
-        <div class="col">
+    </div>
+    <div class="row justify-content-center mt-2">
+        <div class="col-md-3">
             {{render_field(form.confirm, class_="form-control")}}
         </div>
+
     </div>
-    <div class="row justify-content-center">
-        <div class="col-md-6">
+    <div class="row justify-content-center mt-2">
+        <div class="col-md-3">
             {{render_field(form.email, class_="form-control")}}
         </div>
     </div>
-    <div class="row justify-content-center">
-        <p><input type="submit" class="btn btn-primary mt-2" value="Submit"></p>
+    <div class="row justify-content-center mt-2">
+        <input type="submit" class="btn btn-outline-dark mt-2" value="Submit">
     </div>
 </form>
 {%endblock%}

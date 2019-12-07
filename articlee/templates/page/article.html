@@ -2,7 +2,9 @@
 {%block body%}
 <h1 class="display-4">{{ article.title }}</h1>
 <small>{{_('Written by')}} {{ article.author}} {{_('on')}}
-    {{ article.create_date.strftime("%m/%d/%Y %H:%M:%S") }}</small>
+    {{ article.create_date }}</small>
 <hr>
 <div>{{article.body| safe}}</div>
 {%endblock%}
+
+

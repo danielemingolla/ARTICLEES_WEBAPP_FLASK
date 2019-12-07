@@ -7,16 +7,27 @@
 
 
 {%block body%}
-<h1>{{_('Login')}}</h1>
 <form action="" method="POST">
-  <div class="form-group">
-    <label>Username</label>
-    <input type="text" name="username" class="form-control" value={{ request.form.username }}>
+  <div class="row justify-content-center">
+    <div class="col-12 text-center">
+      <img class="img-fluid justify-content-center hidden-lg-down " src="https://i.ibb.co/YjFzKjG/login4.png"
+        width="190" height="280" alt="LOGO" />
+    </div>
   </div>
-  <div class="form-group">
-    <label>Password</label>
-    <input type="password" name="password" class="form-control" value={{ request.form.password }}>
+  <div class="row justify-content-center mt-2">
+    <div class="col-md-3">
+      <label class="text-center">Username</label>
+      <input type="text" name="username" class="form-control" value={{ request.form.username }}>
+    </div>
   </div>
-  <button type="submit" class="btn btn-primary">{{_('Submit')}}</button>
+  <div class="row justify-content-center mt-2">
+    <div class="col-md-3">
+      <label>Password</label>
+      <input type="password" name="password" class="form-control" value={{ request.form.password }}>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <button type="submit" class="btn btn-outline-dark mt-2">{{_('Submit')}}</button>
+  </div>
 </form>
 {%endblock%}

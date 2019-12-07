@@ -3,8 +3,7 @@ import json
 # JSON with credential
 PATH_JSON = 'articlee/credentials.txt'
 
-# Read from json
-
+# Lettura delle informazioni sensibili da un file Json
 
 def read_json(*args):
     for arg in args:
@@ -21,6 +20,8 @@ def read_json(*args):
                     'Errore: ALMENO una credenziale non esistente!')
         return result
 
+
+# Configurazioni che verranno applicate all'applicazione instanziata da Flask
 
 class Config:
     SECRET_KEY, SQLALCHEMY_DATABASE_URI, MAIL_USERNAME, MAIL_PASSWORD = read_json(

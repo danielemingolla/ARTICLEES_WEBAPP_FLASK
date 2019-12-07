@@ -2,7 +2,6 @@
 
 {%block css%}
 <style>
-    
     html {
         -ms-text-size-adjust: 100%;
         -webkit-text-size-adjust: 100%;
@@ -238,7 +237,7 @@
 {%block body%}
 <div id="container">
     <h1><br>&bull;Contattaci&bull;</h1>
-    <form action="#" method="post" id="contact_form">
+    <form action="mailto:progettosad@gmail.com" method="get" id="contact_form">
         <div class="name">
             <label for="name"></label>
             <input type="text" placeholder="Nome" name="name" id="name_input" required>
@@ -262,8 +261,7 @@
         </div>
         <div class="message">
             <label for="message"></label>
-            <textarea name="message" placeholder="Messaggio" id="message_input" cols="30" rows="5"
-                required></textarea>
+            <textarea name="message" placeholder="Messaggio" id="message_input" cols="30" rows="5" required></textarea>
         </div>
         <div class="submit">
             <input type="submit" value="Send Message" id="form_button" />

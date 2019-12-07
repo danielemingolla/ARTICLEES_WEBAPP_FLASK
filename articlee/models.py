@@ -1,6 +1,7 @@
 from articlee import db
 import datetime
 
+# Modelli usati per la creazione della base di dati di Articlee
 
 '''
 WARNING: Copy and paste without TAB
@@ -36,7 +37,6 @@ class Articles(db.Model):
     title = db.Column(db.String(50), nullable=False)
     body = db.Column(db.String(6000), nullable=False)
     create_date = db.Column(db.DateTime, default=datetime.datetime.now)
-
 
 class Product(db.Model):
     __tablename__ = 'product'

@@ -13,12 +13,15 @@ migrate = Migrate()
 babel = Babel()
 
 
-#Get local language of the current user
+# Get local language of the current user
 
 
 @babel.localeselector
 def get_locale():
-    return request.accept_languages.best_match(['en','it'])
+    return request.accept_languages.best_match(['en', 'it'])
+
+# Inizializzazione dell'applicazione e installazione delle varie estensioni
+
 
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -40,4 +43,3 @@ def create_app(config_class=Config):
     app.register_blueprint(utility)
     app.register_blueprint(shopblueprint)
     return app, manager
-

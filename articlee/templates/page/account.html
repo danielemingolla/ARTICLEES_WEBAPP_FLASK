@@ -28,7 +28,7 @@
                     <footer class="blockquote-footer mb-2">Email: {{user.email}}</footer>
                     <div class="row">
                         <div class="col-md-6">
-                            <h6>{{_('About Me')}}</h6>
+                            <h5>{{_('About Me: ')}}<u></u></h5>
                             <p>
                                 {{user.description}}
                             </p>
@@ -37,11 +37,11 @@
                     <!--/row-->
                 </div>
                 <div class="tab-pane" id="articles">
-                    <table class="table table-hover">
+                    <table class="table table-hover table-responsive-md">
                         <thead class="thead-dark">
                             </tr>
-                            <th>{{_('TITOLO')}}</th>
-                            <th>{{_('DATA')}}</th>
+                            <th>{{_('TITLE')}}</th>
+                            <th>{{_('DATE')}}</th>
                             <th></th>
                             <th></th>
                             </tr>
@@ -50,7 +50,7 @@
                             {%for article in articles%}
                             <tr>
                                 <td><a href="article/{{ article.id}}">{{article.title}}</a></td>
-                                <td>{{article.create_date.strftime("%m/%d/%Y %H:%M:%S")}}</td>
+                                <td>{{article.create_date}}</td>
                                 <td><a href="edit_article/{{article.id}}"
                                         class="btn btn-dark text-white pull-right">{{_('Edit')}}</a>
                                 </td>
@@ -116,7 +116,7 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-9">
-                                {{form.submit(class_="btn btn-secondary")}}
+                                {{form.submit(class_="btn btn-dark")}}
                                 {{ form.hidden_tag() }}
                                 <!--Risolve il problema con il CSRF token-->
                             </div>
@@ -128,7 +128,7 @@
         <div class="col-lg-4 order-lg-1 text-center">
             <img src="{{user.image_file}}" class="mx-auto img-fluid rounded-circle d-block" alt="avatar"
                 id="avatarpicture">
-            <a href="/add_article" class="btn btn-outline-success by-3">{{_('SCRIVI')}}</a><br>
+            <a href="/add_article" class="btn btn-outline-dark by-3">{{_('WRITE')}}</a><br>
         </div>
         <hr>
     </div>

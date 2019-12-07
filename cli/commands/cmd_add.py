@@ -58,4 +58,4 @@ def cli(p_articles, count, path):
             with app.app_context():
                 db.session.add(user)
                 db.session.commit()
-    click.echo("I've finish. Rows generated: %d" % count)
+    click.echo("I've finished. Rows generated: %d" % count)

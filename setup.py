@@ -1,5 +1,7 @@
 from setuptools import setup
 
+# Impostazioni per permettere alla libreria Click di riconoscere i comandi
+
 setup(
     name='Articlee-CLI',
     version='1.0',

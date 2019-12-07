@@ -5,9 +5,33 @@ from articlee.models import Articles
 from articlee.main.utility import is_logged_in
 from wtforms import StringField, TextAreaField
 from wtforms.validators import DataRequired, Length
-from flask import render_template, flash, redirect, url_for, session, request, Blueprint
+from flask import render_template, flash, redirect, url_for, session, request, Blueprint, jsonify
 
 articlesblueprint = Blueprint('articlesblueprint', __name__)
+
+# API ARTICOLI
+
+
+@articlesblueprint.route('/api/article/<int:id>')
+def apiarticle(id):
+    article = Articles.query.filter(Articles.id == id).first()
+    if article:
+        return jsonify({"message": "success", "id": article.id, "title": article.title, "author": article.author, "body": article.body, "create_date": article.create_date})
+    else:
+        return jsonify({"message": "Article doesn't exist!"})
+
+
+@articlesblueprint.route('/api/allarticles/')
+def allarticles():
+    dict_allarticles = []
+    allarticles = Articles.query.all()
+    if allarticles:
+        for article in allarticles:
+            dict_allarticles.append({"id": article.id, "author": article.author,
+                                     "body": article.body, "create_date": article.create_date})
+        return jsonify(dict_allarticles)
+    else:
+        return jsonify({"message": "There is no article!"})
 
 
 # Article form class
@@ -31,8 +55,11 @@ def articles(page_num):
 @articlesblueprint.route('/article/<string:id>/')
 def article(id):
     # Get article
-    article = Articles.query.filter(Articles.id == id).first()
-    return render_template('page/article.html', article=article)
+    risposta = apiarticle(id).get_json()
+    if risposta['message'] != "success":
+        flash("Article doesn't exist!", "danger")
+        return redirect(url_for('articlesblueprint.articles', page_num=1))
+    return render_template('page/article.html', article=risposta)
 
 
 # Add article

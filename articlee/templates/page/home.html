@@ -4,13 +4,15 @@
 <link rel="stylesheet" type="text/css" href="../../static/styles/home.css" />
 <script
   type="text/javascript"> (function () { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
+<link href="https://fonts.googleapis.com/css?family=Sacramento&display=swap" rel="stylesheet">
+
 {%endblock%}
 
 {% block body %}
 <div class="d-flex flex-column justify-content-center align-items-center">
   <img class="img-fluid justify-content-center hidden-lg-down "
     src="http://pluspng.com/img-png/feather-pen-png-black-and-white-size-512.png" height="130" width="130" alt="LOGO" />
-  <h1 class="display-1 text-center">{{_('WELCOME TO ARTICLEES')}}</h1>
+  <h1 class="display-1 text-center main-text">{{_('Welcome to Articlee')}}</h1>
   <blockquote class="blockquote text-center mb-0">
     <p class="mb-0">
       <i class="fa fa-quote-left fa-xs pr-2"></i>{{_('I do not agree with what you
@@ -90,38 +92,37 @@
   {% endif %}
   <!--/.Carousel Wrapper-->
 </div>
+
 <footer class="text-center d-none d-xl-block" id="home-footer">
   <!-- Facebook -->
   <a class="fb-ic">
-    <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+    <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3"> </i>
   </a>
   <!-- Twitter -->
   <a class="tw-ic">
-    <i class="fab fa-twitter fa-2x white-text mr-md-5 mr-3 fa-2x"> </i>
+    <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3"> </i>
   </a>
   <!-- Google +-->
   <a class="gplus-ic">
-    <i class="fab fa-google-plus-g fa-2x white-text mr-md-5 mr-3 fa-2x"> </i>
+    <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3"> </i>
   </a>
   <!--Linkedin -->
   <a class="li-ic">
-    <i class="fab fa-linkedin-in fa-2x white-text mr-md-5 mr-3 fa-2x"> </i>
+    <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3"> </i>
   </a>
   <!--Instagram-->
   <a class="ins-ic">
-    <i class="fab fa-instagram fa-2x white-text mr-md-5 mr-3 fa-2x"> </i>
+    <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3"> </i>
   </a>
   <!--Pinterest-->
   <a class="pin-ic">
-    <i class="fab fa-pinterest fa-2x white-text fa-2x"> </i>
+    <i class="fab fa-pinterest fa-lg white-text"> </i>
   </a>
   <!-- Copyright -->
-  <div class="text-center pb-2 pt-2">
-    © 2019 Copyright:
-    <a href="https://danielemingolla.site/"> Daniele Mingolla</a>
-  </div>
+  <p class="font-italic text-muted mb-0">&copy; Alessio Amatucci &amp; Daniele Mingolla All rights reserved.</p>
   <!-- Copyright -->
 </footer>
+
 
 {%endblock%}
 
