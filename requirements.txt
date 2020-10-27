@@ -39,5 +39,5 @@ stripe==2.35.1
 
 # Utilities
 Faker==2.0.1
-Pillow==6.2.0
+Pillow==7.1.0
 passlib==1.7.1

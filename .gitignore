@@ -10,3 +10,4 @@ articleenv/
 ckeditor/
 *.mo
 *.pot
+*.sqbpro

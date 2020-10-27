@@ -9,6 +9,7 @@ mainroutes = Blueprint('mainroutes', __name__)
 
 # API
 
+
 @mainroutes.route('/api/index')
 def apiindex():
     dict_article = []
@@ -34,3 +35,8 @@ def about():
 @mainroutes.route('/contact')
 def contact():
     return render_template('page/contact.html')
+
+# FAQ
+@mainroutes.route('/faq')
+def faq():
+    return render_template('page/faq.html')

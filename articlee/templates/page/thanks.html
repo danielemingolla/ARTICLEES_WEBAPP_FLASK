@@ -6,7 +6,8 @@
 
 {% block body %}
 <div class="jumbotron text-center my-4">
-    <h1 class="display-4">{{_('YOU\'VE BOUGHT')}}<br> <u>{{product.name}}</u><br> {{_('FOR JUST')}} {{product.price}}0€ !</h1>
+    <h1 class="display-4">{{_('YOU\'VE BOUGHT')}}<br> <u>{{product.name}}</u><br> {{_('FOR JUST')}} {{product.price}}0€
+        !</h1>
     <p class="lead">{{_('We\'ve received your order, you\'ll receive an email with further details.')}}</p>
     <figure class="figure">
         <img src="{{product.image_file}}" class="figure-img img-fluid rounded" alt="Picture {{product.id}}">
